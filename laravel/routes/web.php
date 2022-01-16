@@ -24,6 +24,9 @@ Auth::routes();
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
+    Route::get('product/{id}', [\App\Http\Controllers\ProductController::class, 'index'])->name('product.details');
+    Route::get('/catalog', [App\Http\Controllers\CatalogController::class, 'index'])->name('catalog');
+    Route::get('/settings', [App\Http\Controllers\SettingController::class, 'index'])->name('settings');
 });
 
 Route::middleware(['guest'])->group(function () {

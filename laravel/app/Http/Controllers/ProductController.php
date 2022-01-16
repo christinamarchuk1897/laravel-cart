@@ -2,23 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Repositories\ProductRepository;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
 
-    // // private ProductRepository $productRepository;
+    private $product;
 
-
-    // public function __construct(ProductRepository $productRepository)
-    // {
-    //     $this->productRepository = $productRepository;
-    // }
-
-    public function show()
+    public function __construct(Product $product)
     {
-        // dd(ProductRepository::class);
-        return view('home');
+        $this->product = $product;
+    }
+
+    public function index($id)
+    {
+        $data = $this->product->getProduct($id);
+
+        return view('product.details', ['product' => $data[0]]);
     }
 }
