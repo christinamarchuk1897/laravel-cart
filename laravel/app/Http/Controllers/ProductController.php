@@ -21,4 +21,9 @@ class ProductController extends Controller
 
         return view('product.details', ['product' => $data[0]]);
     }
+
+    public function create()
+    {
+        return view('settings.create');
+    }
 }
