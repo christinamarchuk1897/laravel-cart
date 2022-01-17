@@ -33,4 +33,9 @@ class Product extends Model
     {
         return  Product::where('id', $id)->get();
     }
+
+    public function createProduct($data)
+    {
+        return Product::create($data);
+    }
 }

@@ -11,6 +11,7 @@ class Category extends Model
 
     const ROUTE_CATALOG = 'catalog';
     const ROUTE_CATALOG_SHOW = 'catalog.show';
+
     public function getAll()
     {
         return Category::get();

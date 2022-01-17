@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Settings;
 use Illuminate\Http\Request;
 
@@ -16,7 +17,8 @@ class SettingController extends Controller
     public function index()
     {
         $data = $this->settings->getAll();
-        // dd($data)
         return view('settings.index', ['data' => $data, 'route' => $this->settings::ROUTE]);
     }
+
+
 }
