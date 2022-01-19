@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="card m-2" style="width: 18rem;">
                 <div class="card-body">
-                    <img class="card-img-top" src="..." alt="Card image cap">
+                    <img class="card-img-top" src="/public/images/{{$product->image_path}}" alt="Card image cap">
                     <h5 class="card-title">{{$product->title}}</h5>
                     <p class="card-text"> {{$product->description}}</p>
                 </div>

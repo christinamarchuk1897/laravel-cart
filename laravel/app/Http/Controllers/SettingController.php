@@ -17,7 +17,7 @@ class SettingController extends Controller
     public function index()
     {
         $data = $this->settings->getAll();
-        return view('settings.index', ['data' => $data, 'route' => $this->settings::ROUTE]);
+        return view('product.create', ['data' => $data, 'route' => $this->settings::ROUTE]);
     }
 
 

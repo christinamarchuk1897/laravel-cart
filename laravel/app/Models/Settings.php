@@ -9,7 +9,7 @@ class Settings extends Model
 {
     use HasFactory;
 
-    const ROUTE = 'settings.create';
+    const ROUTE = 'product.create';
 
     public function getAll()
     {

@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Settings;
+use App\Models\Product;
 
 class SettingsSeeder extends Seeder
 {
@@ -15,7 +16,7 @@ class SettingsSeeder extends Seeder
     public function run()
     {
         Settings::truncate();
-
+        Product::truncate();
         $settings = [
             ['name' => 'Create Product'],
             ['name' => 'Edit Product']

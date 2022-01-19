@@ -8,11 +8,11 @@
         <h1>This is create page</h1>
         <div class="container">
         <div class="row">
-            <form method="post" action="">
+            <form method="post" action="" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group mb-3">
                     <label for="name">Product Name</label>
-                    <input type="text" class="form-control" id="name" placeholder="Enter name" name="title">
+                    <input type="text" class="form-control" id="name" placeholder="Enter name" name="name">
                 </div>
                 @error('title')
                     <div class="alert alert-danger">{{ $message }}</div>
@@ -21,6 +21,12 @@
                     <label for="description">Product Description</label>
                     <input type="text" class="form-control" id="description" placeholder="Enter description" name="description">
                 </div>
+                <div class="form-group">
+                        <input type="file" name="image_path" placeholder="Choose image" id="image">
+                        @error('image')
+                            <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                        @enderror
+                    </div>
                 @error('description')
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
@@ -41,7 +47,7 @@
                 <div class="form-group mb-3">
                     <div class="form-group">
                         <label for="exampleFormControlSelect1">Product category</label>
-                        <select class="form-control" id="exampleFormControlSelect1" name="category">
+                        <select class="form-control" id="exampleFormControlSelect1" name="category_id">
                             <option value="" selected>Select type</option>
                             @foreach ($categories as $category)
                                 <option value="{{$category->id}}">{{$category->name}}</option>

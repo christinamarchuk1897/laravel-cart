@@ -24,8 +24,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/catalog/all', [App\Http\Controllers\CatalogController::class, 'index'])->name('catalog');
     Route::get('/category/{id}', [App\Http\Controllers\CatalogController::class, 'show'])->name('catalog.show');
     Route::get('/settings', [App\Http\Controllers\SettingController::class, 'index'])->name('settings');
-    Route::get('/settings/create', [App\Http\Controllers\ProductController::class, 'index'])->name('settings.index');
-    Route::post('/settings/create', [App\Http\Controllers\ProductController::class, 'create'])->name('settings.create');
+    Route::get('/settings/create', [App\Http\Controllers\ProductController::class, 'index'])->name('product.index');
+    Route::post('/settings/create', [App\Http\Controllers\ProductController::class, 'create'])->name('product.create');
     Route::get('/settings/edit', [App\Http\Controllers\ProductController::class, 'edit'])->name('settings.edit');
 });
 
