@@ -24,7 +24,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    AllesBuy
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -35,7 +35,25 @@
                     <ul class="navbar-nav me-auto">
 
                     </ul>
-
+                    @auth
+                        <ul class="nav-bar-items">
+                            <li>
+                                <a href="{{ route('dashboard') }}">
+                                <i class="zmdi zmdi-view-dashboard"></i> Dashboard
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('catalog') }}">
+                                <i class="zmdi zmdi-widgets"></i> Catalog
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('settings') }}">
+                                    <i class="zmdi zmdi-settings"></i> Settings
+                                </a>
+                            </li>
+                        </ul>
+                    @endauth
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
@@ -74,9 +92,7 @@
                 </div>
             </div>
         </nav>
-        @auth
-            @include('sidebar')
-        @endauth
+
         <main class="py-4">
             @yield('content')
         </main>

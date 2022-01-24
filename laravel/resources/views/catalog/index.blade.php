@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-@include('layouts.navlist', ['data' => $data, 'route' => $route])
-    <h1>This is catalog</h1>
+    @include('sidebar', ['data' => $data, 'route' => $route])
+    @include('product.card', ['products' => $products])
+    @if ($products->isEmpty())
+    <h1>NotFound</h1>
+    @endif
 @endsection

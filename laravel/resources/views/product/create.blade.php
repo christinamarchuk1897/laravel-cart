@@ -2,7 +2,7 @@
 
 @section('content')
     @if (Route::currentRouteName() == 'settings')
-        @include('layouts.navlist', ['data' => $data, 'route' => $route])
+        @include('sidebar', ['data' => $data, 'route' => $route])
     @else
         <a href="{{url()->previous()}}" class="btn btn-primary mb-3">< Back</a>
         <h1>This is create page</h1>

@@ -1,0 +1,30 @@
+nav.navbar{
+    background-color: #263238 !important;
+    .navbar-brand{
+        color: #CFD8DC;
+        transition: .3s all;
+        &:hover {
+            color: #ECEFF1;
+        }
+    }
+    .nav-bar-items{
+        list-style-type: none;
+        display: flex;
+        width: 70%;
+        a {
+            width: 100%;
+            background: none;
+            color: #CFD8DC;
+            font-size: 14px;
+            display: inline-block;
+            &:hover {
+                color: #ECEFF1;
+            }
+        }
+        li {
+            &:not(:last-child){
+                margin-right: 30px;
+            }
+        }
+    }
+}

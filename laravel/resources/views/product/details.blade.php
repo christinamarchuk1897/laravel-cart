@@ -1,15 +1,21 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="card m-2" style="width: 18rem;">
-                <div class="card-body">
-                    <img class="card-img-top" src="/public/images/{{$product->image_path}}" alt="Card image cap">
-                    <h5 class="card-title">{{$product->title}}</h5>
-                    <p class="card-text"> {{$product->description}}</p>
-                </div>
+    <div class="single-item">
+        <div class="left-set">
+            <img src="/public/images/{{$product->image_path}}" alt="" />
+        </div>
+        <div class="right-set">
+            <div class="name">{{$product->name}}</div>
+            <div class="price">{{$product->price}}</div>
+            <div class="description">
+                <p>
+                    {{$product->description}}
+                </p>
             </div>
+            <button class="button-28">
+                <a href="">Add to Card</a>
+            </button>
         </div>
     </div>
 @endsection

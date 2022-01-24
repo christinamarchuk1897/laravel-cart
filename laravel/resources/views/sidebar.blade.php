@@ -1,21 +1,19 @@
-{{-- @extends('layouts.app') --}}
 
-<div class="sidebar">
-    <ul class="sidebar-wrapper">
-        <li class="sidebar-item">
-            <a href="{{ route('dashboard') }}">Dashboard</a>
-        </li>
-        <li>
-            <a href="{{ route('catalog') }}">Catalog</a>
-        </li>
-        {{-- <li>
-            <a href="{{ route('wishlist') }}"></a>
-        </li>
-        <li>
-            <a href="{{ route('favorites') }}"></a>
-        </li> --}}
-        <li>
-            <a href="{{ route('settings') }}">Settings</a>
-        </li>
-    </ul>
+<div id="viewport">
+  <div id="sidebar">
+    @if (isset($data))
+        <ul class="nav">
+            @if (Route::currentRouteName() == 'catalog' || Route::currentRouteName() == 'catalog.show')
+                <li>
+                    <a href="{{ route('catalog', 'all') }}">All</a>
+                </li>
+            @endif
+            @foreach ($data as $item)
+                <li>
+                    <a href="{{ route($route, $item->id) }}">{{ $item->name }}</a>
+                </li>
+            @endforeach
+        </ul>
+    @endif
+  </div>
 </div>

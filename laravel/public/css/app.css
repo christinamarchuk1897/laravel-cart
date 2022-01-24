@@ -1,4 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,500,700);
 @charset "UTF-8";
 /*!
  * Bootstrap v5.1.3 (https://getbootstrap.com/)
@@ -11289,9 +11290,11 @@ textarea.form-control-lg {
 body {
   margin: 0;
   padding: 0;
+  font-family: "Roboto", sans-serif;
+  background-color: #dee2e6 !important;
 }
 body main {
-  margin-left: 240px;
+  margin-left: 300px;
 }
 body ul {
   padding: 0;
@@ -11302,14 +11305,336 @@ body ul {
   box-sizing: border-box;
 }
 
-.sidebar {
+#viewport {
+  padding-left: 250px;
+  transition: all 0.5s ease;
+}
+
+/* Sidebar Styles */
+#sidebar {
+  z-index: 1000;
   position: fixed;
   top: 55px;
+  left: 250px;
+  width: 250px;
+  height: 100%;
+  margin-left: -250px;
+  overflow-y: auto;
+  background: #37474F;
+  transition: all 0.5s ease;
+}
+
+#sidebar header {
+  background-color: #263238;
+  font-size: 20px;
+  line-height: 52px;
+  text-align: center;
+}
+
+#sidebar header a {
+  color: #fff;
+  display: block;
+  text-decoration: none;
+}
+
+#sidebar header a:hover {
+  color: #fff;
+}
+
+#sidebar .nav li {
+  width: 100%;
+  min-height: 51px;
+}
+
+#sidebar .nav a {
+  background: none;
+  border-bottom: 1px solid #455A64;
+  color: #CFD8DC;
+  font-size: 14px;
+  padding: 16px 24px;
+  width: 100%;
+  display: inline-block;
+  height: 100%;
+}
+
+#sidebar .nav a:hover {
+  background: none;
+  color: #ECEFF1;
+}
+
+#sidebar .nav a i {
+  margin-right: 16px;
+}
+
+a {
+  text-decoration: none;
+}
+
+.product-card {
+  width: 380px;
+  position: relative;
+  box-shadow: 0 2px 7px #dfdfdf;
+  background: #fafafa;
+  padding: 0;
+  border-radius: 8px;
+}
+
+.badge {
+  position: absolute;
   left: 0;
-  width: 200px;
-  border-right: 1px solid #e2e2e2;
-  border-top: 1px solid #e2e2e2;
-  background-color: #fff;
-  height: 100vh;
-  padding: 4rem 2rem;
+  top: 20px;
+  text-transform: uppercase;
+  font-size: 13px;
+  font-weight: 700;
+  background: red;
+  color: #fff;
+  padding: 3px 10px;
+}
+
+.product-tumb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 300px;
+  padding: 50px;
+  background: #f0f0f0;
+  border-radius: 8px;
+}
+
+.product-tumb img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.product-details {
+  padding: 30px;
+}
+
+.product-catagory {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #ccc;
+  margin-bottom: 18px;
+}
+
+.product-details h4 a, .product-details .h4 a {
+  font-weight: 500;
+  display: block;
+  margin-bottom: 18px;
+  text-transform: uppercase;
+  color: #363636;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.product-details h4 a:hover, .product-details .h4 a:hover {
+  color: #fbb72c;
+}
+
+.product-details p {
+  font-size: 15px;
+  line-height: 22px;
+  margin-bottom: 18px;
+  color: #999;
+}
+
+.product-bottom-details {
+  overflow: hidden;
+  border-top: 1px solid #eee;
+  padding-top: 20px;
+}
+
+.product-bottom-details div {
+  float: left;
+  width: 50%;
+}
+
+.product-price {
+  font-size: 18px;
+  color: #fbb72c;
+  font-weight: 600;
+}
+
+.product-price small, .product-price .small {
+  font-size: 80%;
+  font-weight: 400;
+  text-decoration: line-through;
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.product-links {
+  text-align: right;
+}
+
+.product-links a {
+  display: inline-block;
+  margin-left: 5px;
+  color: #e1e1e1;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+.product-links a:hover {
+  color: #fbb72c;
+}
+
+.button-28 a {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  background-color: transparent;
+  border: 2px solid #1A1A1A;
+  border-radius: 15px;
+  box-sizing: border-box;
+  color: #3B3B3B;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Roobert, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 16px;
+  font-weight: 600;
+  line-height: normal;
+  margin: 0;
+  min-height: 60px;
+  min-width: 0;
+  outline: none;
+  padding: 16px 24px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 300ms cubic-bezier(0.23, 1, 0.32, 1);
+  -moz-user-select: none;
+   -ms-user-select: none;
+       user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: 100%;
+  will-change: transform;
+}
+
+.button-28:disabled a {
+  pointer-events: none;
+}
+
+.button-28 a:hover {
+  color: #fff;
+  background-color: #324047;
+  box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+  transform: translateY(-2px);
+}
+
+.button-28 a:active {
+  box-shadow: none;
+  transform: translateY(0);
+}
+
+.button-28 {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  width: 100%;
+  margin-top: 15px;
+}
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.single-item {
+  width: 95%;
+  min-height: 80vh;
+  border: solid 6px #fff;
+  border-radius: 10px;
+  background: #f5f5f5;
+  box-shadow: 0 30px 20px -20px rgba(0, 0, 0, 0.3);
+  box-sizing: border-box;
+}
+
+.left-set,
+.right-set {
+  position: relative;
+  width: 50%;
+  height: 50%;
+}
+
+.left-set {
+  float: left;
+  min-height: 50%;
+}
+
+.left-set img {
+  position: absolute;
+  top: 2rem;
+  left: 50%;
+  transform: translate(-50%, 0);
+  width: 90%;
+}
+
+.right-set {
+  float: right;
+  padding: 2rem 1rem;
+  box-sizing: border-box;
+}
+
+.right-set .name,
+.right-set .subname {
+  font-weight: bold;
+}
+
+.right-set .name {
+  font-size: 1.4rem;
+  line-height: 2rem;
+}
+
+.right-set .subname {
+  font-size: 0.8rem;
+  line-height: 1rem;
+}
+
+.right-set .price {
+  padding: 1rem 0;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.right-set .description p {
+  font-size: 0.9rem;
+  text-align: justify;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
+}
+
+nav.navbar {
+  background-color: #263238 !important;
+}
+nav.navbar .navbar-brand {
+  color: #CFD8DC;
+  transition: 0.3s all;
+}
+nav.navbar .navbar-brand:hover {
+  color: #ECEFF1;
+}
+nav.navbar .nav-bar-items {
+  list-style-type: none;
+  display: flex;
+  width: 70%;
+}
+nav.navbar .nav-bar-items a {
+  width: 100%;
+  background: none;
+  color: #CFD8DC;
+  font-size: 14px;
+  display: inline-block;
+}
+nav.navbar .nav-bar-items a:hover {
+  color: #ECEFF1;
+}
+nav.navbar .nav-bar-items li:not(:last-child) {
+  margin-right: 30px;
 }

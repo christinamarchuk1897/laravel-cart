@@ -39,4 +39,9 @@ class Product extends Model
     {
         return Product::create($data);
     }
+
+    public function getProductByCategory($categoryId)
+    {
+        return Product::where('category_id', $categoryId)->get();
+    }
 }
