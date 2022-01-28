@@ -2,22 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Repositories\ProductRepository;
-use App\Models\Product;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
+use App\Services\ProductService;
 
 class HomeController extends Controller
 {
-    private $products;
+    private $productService;
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct(Product $products)
+    public function __construct(ProductService $productService)
     {
         $this->middleware('auth');
-        $this->products = $products;
+        $this->productService = $productService;
     }
 
     /**
@@ -27,10 +26,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $data = $this->products->getAllProducts();
-
-
+        $data = $this->productService->all();
         return view('home', ['products' => $data]);
     }
-
 }

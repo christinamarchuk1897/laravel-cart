@@ -2,13 +2,19 @@
 
 namespace App\Repositories;
 
-use App\Interfaces\ProductRepositoryInterface;
 use App\Models\Product;
 
-class ProductRepository implements ProductRepositoryInterface
+class ProductRepository extends BaseRepository
 {
-    // public function getAllProducts()
-    // {
-    //     return Product::get();
-    // }
+   protected $model;
+
+    /**
+     * Create a new repository instance.
+     *
+     * @return void
+     */
+   public function __construct(Product $product)
+   {
+       $this->model = $product;
+   }
 }

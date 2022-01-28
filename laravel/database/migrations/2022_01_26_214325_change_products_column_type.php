@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddFieldsToProductsTable extends Migration
+class ChangeProductsColumnType extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ class AddFieldsToProductsTable extends Migration
      */
     public function up()
     {
-        Schema::table('products', function (Blueprint $table) {
-            $table->string('image_path');
-            $table->integer('category_id');
+         Schema::table('products', function (Blueprint $table) {
+            $table->string('release_date')->change();
         });
     }
 
@@ -26,9 +25,6 @@ class AddFieldsToProductsTable extends Migration
      */
     public function down()
     {
-        Schema::table('products', function (Blueprint $table) {
-            $table->dropColumn('image_path');
-            $table->dropColumn('category_id');
-        });
+        //
     }
 }

@@ -2,16 +2,17 @@
 <div class="container">
     <div class="row justify-content-center">
         @foreach ($products as $product)
-            <div class="product-card">
+            <div class="product-card m-2">
                 <div class="badge">Hot</div>
                 <div class="product-tumb">
-                    <img src="/public/images/{{$product->image_path}}" alt="">
+                    <img src="{{$product->image}}" alt="">
+                    {{-- /public/images/{{$product->image_path}} --}}
                 </div>
                 <div class="product-details">
-                    <h4><a href="">{{$product->name}}</a></h4>
-                    <p>{{$product->description}}</p>
+                    <h4><a href="">{{$product->title}}</a></h4>
+                    <p>{{$product['short_description']}}</p>
                     <div class="product-bottom-details">
-                        <div class="product-price">{{$product->price}}</div>
+                        <div class="product-price"></div>
                         <div class="product-links">
                             <a href=""><i class="fa fa-heart"></i></a>
                             <a href=""><i class="fa fa-shopping-cart"></i></a>

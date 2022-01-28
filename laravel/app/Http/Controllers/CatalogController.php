@@ -29,7 +29,6 @@ class CatalogController extends Controller
     {
         $data = $this->categories->getAll();
         $products = $this->productModel->getProductByCategory($id);
-        // dd($products);
         return view('catalog.index', ['data' => $data, 'route' => $this->categories::ROUTE_CATALOG_SHOW, 'products' => $products]);
     }
 

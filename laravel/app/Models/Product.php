@@ -5,43 +5,45 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\Request;
 
 class Product extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'name',
-        'description',
-        'code',
-        'price',
-        'category_id',
-        'image_path'
+        "title",
+        "image",
+        "description",
+        "genre",
+        "category_id",
+        "platform",
+        "publisher" ,
+        "developer",
+        "release_date",
     ];
 
-    public function getModelClass()
-    {
-        return Product::class;
-    }
+    // public function getModelClass()
+    // {
+    //     return Product::class;
+    // }
 
-    public function getAllProducts()
-    {
-       return Product::get();
-    }
+    // public function getAllProducts()
+    // {
+    //    return Product::get();
+    // }
 
-    public function getProduct($id)
-    {
-        return  Product::where('id', $id)->get();
-    }
+    // public function getProduct($id)
+    // {
+    //     return  Product::where('id', $id)->get();
+    // }
 
-    public function createProduct($data)
-    {
-        return Product::create($data);
-    }
+    // public function createProduct($data)
+    // {
+    //     return Product::create($data);
+    // }
 
-    public function getProductByCategory($categoryId)
-    {
-        return Product::where('category_id', $categoryId)->get();
-    }
+    // public function getProductByCategory($categoryId)
+    // {
+    //     return Product::where('category_id', $categoryId)->get();
+    // }
 }

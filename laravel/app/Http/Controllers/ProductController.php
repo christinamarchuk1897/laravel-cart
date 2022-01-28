@@ -5,24 +5,32 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\Category;
 use App\Http\Requests\ProductCreateRequest;
+use App\Services\ProductService;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+    // index()
+    // create()
+    // store()
+    // show()
+    // edit()
+    // update()
+    // destroy()
 
-    private $product;
+    private $productService;
     private $allCategories;
 
-    public function __construct(Product $product, Category $allCategories)
+    public function __construct(ProductService $productService, Category $allCategories)
     {
-        $this->product = $product;
+        $this->productService = $productService;
         $this->allCategories = $allCategories;
     }
 
     public function show($id)
     {
-        $data = $this->product->getProduct($id);
-        return view('product.details', ['product' => $data[0]]);
+        $data = $this->productService->find($id);
+        return view('product.details', ['product' => $data]);
     }
 
     public function index()
