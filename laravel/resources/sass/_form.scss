@@ -1,0 +1,26 @@
+.form, .product-form{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    .col.col-6{
+        flex: 0 0 49%;
+        &.image{
+            display: inline-flex;
+            align-items: center;
+        }
+    }
+    .submit{
+        text-align: end;
+    }
+}
+.back-button{
+    position: absolute;
+    top: 8%;
+    left: 2%;
+    background: transparent;
+    color: #263238;
+    &:focus{
+        outline: none;
+        box-shadow: none;
+    }
+}

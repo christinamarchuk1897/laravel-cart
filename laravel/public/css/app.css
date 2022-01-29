@@ -11644,3 +11644,31 @@ nav.navbar .nav-bar-items a:hover {
 nav.navbar .nav-bar-items li:not(:last-child) {
   margin-right: 30px;
 }
+
+.form, .product-form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.form .col.col-6, .product-form .col.col-6 {
+  flex: 0 0 49%;
+}
+.form .col.col-6.image, .product-form .col.col-6.image {
+  display: inline-flex;
+  align-items: center;
+}
+.form .submit, .product-form .submit {
+  text-align: end;
+}
+
+.back-button {
+  position: absolute;
+  top: 8%;
+  left: 2%;
+  background: transparent;
+  color: #263238;
+}
+.back-button:focus {
+  outline: none;
+  box-shadow: none;
+}

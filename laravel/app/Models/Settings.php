@@ -11,6 +11,18 @@ class Settings extends Model
 
     const ROUTE = 'product.create';
 
+    protected $fillable = [
+        "title",
+        "image",
+        "description",
+        "genre",
+        "category_id",
+        "platform",
+        "publisher" ,
+        "developer",
+        "release_date",
+    ];
+
     public function product()
     {
         return $this->belongsTo(Product::class);

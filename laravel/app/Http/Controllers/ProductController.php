@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 
 use App\Services\ProductService;
+use App\Http\Requests\ProductCreateRequest;
 
 
 class ProductController extends Controller
@@ -30,5 +31,16 @@ class ProductController extends Controller
     {
         $data = $this->productService->find($id);
         return view('product.details', ['product' => $data]);
+    }
+    public function create(ProductCreateRequest $request)
+    {
+        $data = $request->validated();
+        if($request->hasFile('image'))
+        {
+            $request->file('image')->move('images', $request->file('image')->getClientOriginalName());
+            $data['image'] = $request->file('image')->getClientOriginalName();
+        }
+        $this->productService->create($data);
+        return redirect()->route('dashboard');
     }
 }
