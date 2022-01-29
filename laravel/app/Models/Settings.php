@@ -11,8 +11,8 @@ class Settings extends Model
 
     const ROUTE = 'product.create';
 
-    public function getAll()
+    public function product()
     {
-        return Settings::get();
+        return $this->belongsTo(Product::class);
     }
 }

@@ -12,8 +12,19 @@ class Category extends Model
     const ROUTE_CATALOG = 'catalog';
     const ROUTE_CATALOG_SHOW = 'catalog.show';
 
-    public function getAll()
+
+    public function getModel()
     {
-        return Category::get();
+        return Category::class;
+    }
+
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
+
+    public function settings()
+    {
+        return $this->hasMany(Settings::class);
     }
 }

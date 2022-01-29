@@ -28,4 +28,9 @@ class ProductService extends BaseService
         return $this->data;
     }
 
+    public function getByCategoryId($id)
+    {
+        return $this->repo->getByCategoryId($id);
+    }
+
 }

@@ -22,28 +22,13 @@ class Product extends Model
         "release_date",
     ];
 
-    // public function getModelClass()
-    // {
-    //     return Product::class;
-    // }
+    public function getModelClass()
+    {
+        return Product::class;
+    }
 
-    // public function getAllProducts()
-    // {
-    //    return Product::get();
-    // }
-
-    // public function getProduct($id)
-    // {
-    //     return  Product::where('id', $id)->get();
-    // }
-
-    // public function createProduct($data)
-    // {
-    //     return Product::create($data);
-    // }
-
-    // public function getProductByCategory($categoryId)
-    // {
-    //     return Product::where('category_id', $categoryId)->get();
-    // }
+    public function categories()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }

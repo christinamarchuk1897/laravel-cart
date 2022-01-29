@@ -33,7 +33,7 @@ class CategorySeeder extends Seeder
                 'description' => 'MOBA games also prioritize multiplayer and team play. While some well-known titles feature AI-controlled elements, you usually play with and compete against other human players to meet a set of victory conditions.',
             ],
             [
-                'name' => 'Simulation and sports',
+                'name' => 'Sports',
                 'description' => 'These genres have evolved a lot over the years and you may actually see them in the same light. But it’s only with advances in graphics technology that they’ve begun to offer unique immersive experiences. The latest iterations provide impressive levels of detail and showcase just how much is possible with games.',
             ],
             [
@@ -56,7 +56,34 @@ class CategorySeeder extends Seeder
                 'name' => 'Platformer',
                 'description' => 'Looking for a genre that hasn’t changed much in concept over the years? When it comes to nostalgia and devotion to craft, the platformer genre covers a huge variety of games that still proudly showcase their roots in the earliest 2D side-scrollers. Platformers involve running, climbing, and jumping as the player explores and works their way through challenging levels.',
             ],
-
+            [
+                'name' => 'Card',
+                'description' => '',
+            ],
+            [
+                'name' => 'Strategy',
+                'description' => '',
+            ],
+            [
+                'name' => 'Racing',
+                'description' => '',
+            ],
+            [
+                'name' => 'Social',
+                'description' => '',
+            ],
+            [
+                'name' => 'Battle Royale',
+                'description' => '',
+            ],
+            [
+                'name' => 'Action RPG',
+                'description' => '',
+            ],
+            [
+                'name' => 'Fighting',
+                'description' => '',
+            ]
         ];
 
         foreach ($categories as $category) {

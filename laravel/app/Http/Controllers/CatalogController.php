@@ -1,35 +1,35 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Category;
-use App\Models\Product;
-use Illuminate\Http\Request;
+
+use App\Services\CategoryService;
+use App\Services\ProductService;
 
 class CatalogController extends Controller
 {
-    //
+    private $categoryService;
+    private $productService;
+    private $model;
 
-    private $categories;
-    private $productModel;
-
-    public function __construct(Category $categories, Product $productModel)
+    public function __construct(CategoryService $categoryService, ProductService $productService)
     {
-        $this->categories = $categories;
-        $this->productModel = $productModel;
+        $this->categoryService = $categoryService;
+        $this->productService = $productService;
+        $this->model = $categoryService->getModelClass();
     }
 
     public function index()
     {
-        $data = $this->categories->getAll();
-        $products = $this->productModel->getAllProducts();
-        return view('catalog.index', ['data' => $data, 'route' => $this->categories::ROUTE_CATALOG_SHOW, 'products' => $products]);
+        $categories = $this->categoryService->getActive();
+        $products = $this->productService->all();
+        return view('catalog.index', ['data' => $categories, 'route' => $this->model::ROUTE_CATALOG_SHOW, 'products' => $products]);
     }
 
     public function show($id)
     {
-        $data = $this->categories->getAll();
-        $products = $this->productModel->getProductByCategory($id);
-        return view('catalog.index', ['data' => $data, 'route' => $this->categories::ROUTE_CATALOG_SHOW, 'products' => $products]);
+        $categories = $this->categoryService->getActive();
+        $products = $this->categoryService->getProductByCategory($id);
+        return view('catalog.index', ['data' => $categories, 'route' => $this->model::ROUTE_CATALOG_SHOW, 'products' => $products]);
     }
 
 }
