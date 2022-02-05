@@ -12,39 +12,39 @@
                 <form method="post" action="" enctype="multipart/form-data" class="product-form">
                     @csrf
                     <div class="col col-6">
-                        <div class="form-group mb-3">
-                            <label for="name">Name</label>
-                            <input type="text" class="form-control" id="name" placeholder="Enter name" name="title">
+                        <div class="mb-3 form__group field">
+                            <input type="text" class="form__field" id="name" placeholder="Enter name" name="title">
+                            <label for="name" class="form__label">Name</label>
                         </div>
                         @error('title')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="col col-6">
-                        <div class="form-group mb-3">
-                            <label for="description">Description</label>
-                            <input type="text" class="form-control" id="description" placeholder="Enter description" name="description">
+                        <div class="mb-3 form__group field">
+                            <input type="text" class="form__field" id="description" placeholder="Enter description" name="description">
+                            <label for="description" class="form__label">Description</label>
                         </div>
-                             @error('description')
-                        <div class="alert alert-danger">{{ $message }}</div>
-                         @enderror
+                        @error('description')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="col col-6">
-                        <div class="form-group mb-3">
-                            <label for="exampleFormControlSelect1">Category</label>
-                            <select class="form-control" id="exampleFormControlSelect1" name="category_id">
+                        <div class="mb-3 form__group field">
+                            <select class="form__field" id="categories" name="category_id">
                                 <option value="" selected>Select type</option>
                                 @foreach ($categories as $category)
-                                    <option value="{{$category->id}}">{{$category->name}}</option>
+                                <option value="{{$category->id}}">{{$category->name}}</option>
                                 @endforeach
                             </select>
+                            <label for="categories" class="form__label">Category</label>
                         </div>
                         @error('category')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="col col-6 image">
-                        <div class="form-group">
+                        <div class="form-group form__group field">
                             <input type="file" name="image" placeholder="Choose image" id="image">
                             @error('image')
                                 <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
@@ -52,75 +52,73 @@
                         </div>
                     </div>
                     <div class="col col-6">
-                        <div class="form-group mb-3">
-                            <label for="code">Code</label>
-                            <input type="text" class="form-control" id="code" placeholder="Enter code" name="code">
+                        <div class="mb-3 form__group field">
+                            <input type="text" class="form__field" id="code" placeholder="Enter code" name="code">
+                            <label for="code" class="form__label">Code</label>
                         </div>
                         @error('code')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="col col-6">
-                        <div class="form-group mb-3">
-                            <label for="price">Price</label>
-                            <input type="text" class="form-control" id="price" placeholder="Enter price" name="price">
+                        <div class="mb-3 form__group field">
+                            <input type="text" class="form__field" id="price" placeholder="Enter price" name="price">
+                            <label for="price" class="form__label">Price</label>
                         </div>
                         @error('price')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="col col-6">
-                        <div class="form-group mb-3">
-                            <label for="genre">Genre</label>
-                            <select class="form-control" id="genre" name="genre">
+                        <div class="mb-3 form__group field">
+                            <select class="form__field" id="genre" name="genre">
                                 <option value="" selected>Select type</option>
-                                <option value="HZ">HZ</option>
-                                {{-- @foreach ($categories as $category)
-                                    <option value="{{$category->id}}">{{$category->name}}</option>
-                                @endforeach --}}
+                                @foreach ($genres as $genre)
+                                <option value="{{$genre->id}}">{{$genre->name}}</option>
+                                @endforeach
                             </select>
+                            <label for="genre" class="form__label">Genre</label>
                         </div>
                         @error('genre')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="col col-6">
-                        <div class="form-group mb-3">
-                            <label for="platform">Platform</label>
-                            <select class="form-control" id="platform" name="platform">
+                        <div class="mb-3 form__group field">
+                            <select class="form__field" id="platform" name="platform">
                                 <option value="" selected>Select type</option>
-                                <option value="W">WINDOWS</option>
-                                {{-- @foreach ($categories as $category)
-                                    <option value="{{$category->id}}">{{$category->name}}</option>
-                                @endforeach --}}
+                                @foreach ($platforms as $platform)
+                                <option value="{{$platform->id}}">{{$platform->name}}</option>
+                                @endforeach
                             </select>
+                            <label for="platform" class="form__label">Platform</label>
                         </div>
                         @error('platform')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="col col-6">
-                        <div class="form-group mb-3">
-                            <label for="publisher">Publisher</label>
-                            <input type="text" class="form-control" id="publisher" placeholder="Enter publisher" name="publisher">
+                        <div class="mb-3 form__group field">
+                            <input type="text" class="form__field" id="publisher" placeholder="Enter publisher" name="publisher">
+                            <label for="publisher" class="form__label">Publisher</label>
                         </div>
                         @error('publisher')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="col col-6">
-                        <div class="form-group mb-3">
-                            <label for="developer">Developer</label>
-                            <input type="text" class="form-control" id="developer" placeholder="Enter developer" name="developer">
+                        <div class="mb-3 form__group field">
+                            <input type="text" class="form__field" id="developer" placeholder="Enter developer" name="developer">
+                            <label for="developer" class="form__label">Developer</label>
                         </div>
                         @error('developer')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="col col-6">
-                        <div class="form-group mb-3">
-                            <label for="release_date">Release_date</label>
-                            <input type="text" class="form-control" id="release_date" placeholder="Enter release date" name="release_date">
+                        <div class="mb-3 form__group field">
+                            <input type="text" class="form__field" id="release_date" placeholder="Enter release date" name="release_date">
+                            <label for="release_date" class="form__label">Release_date</label>
                         </div>
                         @error('release_date')
                             <div class="alert alert-danger">{{ $message }}</div>

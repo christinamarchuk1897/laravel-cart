@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
-
 use App\Services\ProductService;
+use App\Services\CategoryService;
+use App\Services\GenreService;
+use App\Services\PlatformService;
 use App\Http\Requests\ProductCreateRequest;
-
 
 class ProductController extends Controller
 {
@@ -19,12 +19,16 @@ class ProductController extends Controller
     // destroy()
 
     private $productService;
-    private $allCategories;
+    private $categoryService;
+    private $genreService;
+    private $platformService;
 
-    public function __construct(ProductService $productService, Category $allCategories)
+    public function __construct(ProductService $productService, CategoryService $categoryService, GenreService $genreService, PlatformService $platformService)
     {
         $this->productService = $productService;
-        $this->allCategories = $allCategories;
+        $this->categoryService = $categoryService;
+        $this->genreService = $genreService;
+        $this->platformService = $platformService;
     }
 
     public function show($id)
@@ -32,6 +36,12 @@ class ProductController extends Controller
         $data = $this->productService->find($id);
         return view('product.details', ['product' => $data]);
     }
+
+    public function showForm()
+    {
+        return view('product.create', ['categories' => $this->categoryService->all(), 'genres' => $this->genreService->all(), 'platforms' => $this->platformService->all()]);
+    }
+
     public function create(ProductCreateRequest $request)
     {
         $data = $request->validated();

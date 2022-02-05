@@ -22,6 +22,7 @@ class CatalogController extends Controller
     {
         $categories = $this->categoryService->getActive();
         $products = $this->productService->all();
+     //   dd($categories);
         return view('catalog.index', ['data' => $categories, 'route' => $this->model::ROUTE_CATALOG_SHOW, 'products' => $products]);
     }
 
