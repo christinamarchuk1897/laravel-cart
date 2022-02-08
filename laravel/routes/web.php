@@ -27,6 +27,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/settings/product/create', [App\Http\Controllers\ProductController::class, 'showForm'])->name('product.create');
     Route::post('/settings/product/create', [App\Http\Controllers\ProductController::class, 'create']);
     Route::get('/settings/edit', [App\Http\Controllers\SettingController::class, 'update'])->name('settings.edit');
+    Route::get('/cart', [App\Http\Controllers\CartController::class, 'index'])->name('shoppingCart');
+    Route::post('/cart', [App\Http\Controllers\CartController::class, 'add'])->name('addToCart');
+    Route::delete('/cart', [App\Http\Controllers\CartController::class, 'delete'])->name('deleteFromCart');
 });
 
 Route::middleware(['guest'])->group(function () {

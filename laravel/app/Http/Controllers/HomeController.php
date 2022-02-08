@@ -27,6 +27,8 @@ class HomeController extends Controller
     public function index()
     {
         $data = $this->productService->all();
-        return view('home', ['products' => $data]);
+        $inCart = $this->productService->getCartProduct();
+       // dd($inCart);
+        return view('home', ['products' => $data, 'inCart' => $inCart]);
     }
 }

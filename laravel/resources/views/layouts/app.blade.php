@@ -19,7 +19,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body>
+<body id="{{Route::currentRouteName()}}">
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
@@ -50,6 +50,11 @@
                             <li>
                                 <a href="{{ route('settings') }}">
                                     <i class="zmdi zmdi-settings"></i> Settings
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('shoppingCart') }}">
+                                    <i class="zmdi zmdi-settings"></i> Cart
                                 </a>
                             </li>
                         </ul>

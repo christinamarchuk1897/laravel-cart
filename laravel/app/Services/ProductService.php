@@ -4,21 +4,24 @@ namespace App\Services;
 
 use App\Repositories\ProductRepository;
 use Illuminate\Support\Facades\Http;
+use App\Repositories\CartRepository;
 
 
 class ProductService extends BaseService
 {
     public $repo;
     private $data;
+    private $cartRepository;
 
     /**
      * Create a new service instance.
      *
      * @return void
      */
-    public function __construct(ProductRepository $productRepository)
+    public function __construct(ProductRepository $productRepository, CartRepository $cartRepository)
     {
         $this->repo = $productRepository;
+        $this->cartRepository = $cartRepository;
     }
 
 
@@ -33,4 +36,8 @@ class ProductService extends BaseService
         return $this->repo->getByCategoryId($id);
     }
 
+    public function getCartProduct()
+    {
+        return $this->cartRepository->all();
+    }
 }

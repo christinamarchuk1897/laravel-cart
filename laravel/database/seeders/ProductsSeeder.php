@@ -34,6 +34,7 @@ class ProductsSeeder extends Seeder
                 "publisher" => $field['publisher'],
                 "developer" => $field['developer'],
                 "release_date" => $field['release_date'],
+                "price" => rand(1,40)
             ]);
         }
     }

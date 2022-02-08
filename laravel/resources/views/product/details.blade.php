@@ -14,9 +14,8 @@
                     {{$product->description}}
                 </p>
             </div>
-            <button class="button-28">
-                <a href="">Add to Card</a>
-            </button>
+
+            <add-to-cart :product="{{ json_encode($product) }}" disabled="{{ $inCart }}"></add-to-cart>
         </div>
     </div>
 @endsection

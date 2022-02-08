@@ -4,10 +4,16 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require('./bootstrap');
+require("./bootstrap");
 
-window.Vue = require('vue').default;
+window.Vue = require("vue").default;
 
+import Vuex from "vuex";
+Vue.use(Vuex);
+
+import storeData from "./store/index";
+
+const store = new Vuex.Store(storeData);
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -19,7 +25,15 @@ window.Vue = require('vue').default;
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component(
+    "example-component",
+    require("./components/ExampleComponent.vue").default
+);
+Vue.component("add-to-cart", require("./components/ToCartButton.vue").default);
+Vue.component(
+    "remove-from-cart",
+    require("./components/RemoveFromCart.vue").default
+);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -28,5 +42,6 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  */
 
 const app = new Vue({
-    el: '#app',
+    el: "#app",
+    store,
 });
