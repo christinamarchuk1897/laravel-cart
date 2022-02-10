@@ -23,7 +23,7 @@
                     <div class="product-actions">
                         <add-to-cart :product="{{ json_encode($product) }}" disabled="{{ isset($inCart[$key]) && $inCart[$key]->product_id == $product->id ? true : false }}"></add-to-cart>
                         <button class="button-28" role="button">
-                            <a href="{{ route('product.details', ['id' => $product->id])}}">Details</a>
+                            <a href="{{ route('productDetails', ['id' => $product->id])}}">Details</a>
                         </button>
                     </div>
                 </div>

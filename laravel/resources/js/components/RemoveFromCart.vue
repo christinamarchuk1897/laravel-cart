@@ -1,7 +1,17 @@
 <template>
-    <button class="button-28" role="button" @click="removeFromCart">
-        <span>Remove</span>
-    </button>
+    <div>
+        <button
+            v-if="isCart"
+            class="button-28 clear"
+            role="button"
+            @click="clearCart"
+        >
+            <span>Clear</span>
+        </button>
+        <button v-else class="button-28" role="button" @click="removeFromCart">
+            <span>Remove</span>
+        </button>
+    </div>
 </template>
 
 <script>
@@ -14,6 +24,10 @@ export default {
         id: {
             type: [Number],
         },
+        isCart: {
+            type: Boolean,
+            default: false,
+        },
     },
     methods: {
         removeFromCart() {
@@ -21,6 +35,16 @@ export default {
                 .delete("/cart", { params: { id: this.id } })
                 .then((response) => location.reload());
         },
+        clearCart() {
+            axios
+                .delete("/cart/clear", { params: { user_id: this.id } })
+                .then((response) => location.reload());
+        },
     },
 };
 </script>
+<style lang="scss" scoped>
+.clear {
+    width: 100%;
+}
+</style>

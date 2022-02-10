@@ -11306,6 +11306,10 @@ body ul {
   box-sizing: border-box;
 }
 
+#shoppingCart main, #productDetails main {
+  margin-left: 0 !important;
+}
+
 #viewport {
   padding-left: 250px;
   transition: all 0.5s ease;
@@ -11371,7 +11375,7 @@ a {
   text-decoration: none;
 }
 
-.product-card {
+div.product-card {
   width: 380px;
   position: relative;
   box-shadow: 0 2px 7px #dfdfdf;
@@ -11573,6 +11577,7 @@ a {
   background: #f5f5f5;
   box-shadow: 0 30px 20px -20px rgba(0, 0, 0, 0.3);
   box-sizing: border-box;
+  margin: 0 auto;
 }
 
 .left-set,
@@ -11789,14 +11794,11 @@ nav.navbar .nav-bar-items li:not(:last-child) {
 }
 
 /* demo */
-#shoppingCart main {
-  margin-left: 0 !important;
-}
-
 .cart_info {
   width: 100%;
   background: #FFFFFF;
-  padding-top: 96px;
+  padding: 50px 20px;
+  border-radius: 8px;
   z-index: 2;
 }
 
@@ -11808,13 +11810,13 @@ nav.navbar .nav-bar-items li:not(:last-child) {
 
 .cart_info_col {
   float: left;
-  font-size: 14px;
-  font-weight: 400;
+  font-size: 18px;
+  font-weight: 600;
   color: #1b1b1b;
 }
 
 .cart_info_col_product {
-  width: 45%;
+  width: 50%;
 }
 
 .cart_info_col_price {
@@ -11822,7 +11824,7 @@ nav.navbar .nav-bar-items li:not(:last-child) {
 }
 
 .cart_info_col_quantity {
-  width: 17%;
+  width: 14%;
   text-align: center;
 }
 
@@ -11837,7 +11839,7 @@ nav.navbar .nav-bar-items li:not(:last-child) {
 }
 
 .cart_item_product {
-  width: 45%;
+  width: 50%;
 }
 
 .cart_item_price {
@@ -11845,7 +11847,7 @@ nav.navbar .nav-bar-items li:not(:last-child) {
 }
 
 .cart_item_quantity {
-  width: 17%;
+  width: 14%;
   text-align: center;
 }
 
@@ -11890,8 +11892,8 @@ nav.navbar .nav-bar-items li:not(:last-child) {
 }
 
 .cart_item_price {
-  font-size: 14px;
-  font-weight: 400;
+  font-size: 16px;
+  font-weight: 500;
   color: #1b1b1b;
 }
 
@@ -11903,6 +11905,7 @@ nav.navbar .nav-bar-items li:not(:last-child) {
   overflow: hidden;
   padding-left: 78px;
   vertical-align: middle;
+  border-radius: 8px;
 }
 .product_quantity span {
   position: absolute;
@@ -11972,8 +11975,8 @@ nav.navbar .nav-bar-items li:not(:last-child) {
 }
 
 .cart_item_total {
-  font-size: 14px;
-  font-weight: 400;
+  font-size: 16px;
+  font-weight: 500;
   color: #1b1b1b;
 }
 
@@ -12147,9 +12150,28 @@ label {
 }
 
 .cart_item_remove {
-  margin: 0 auto;
+  margin-left: auto;
 }
 .cart_item_remove button {
   margin-top: 0;
   width: 100%;
+}
+
+.home_content .breadcrumbs ul {
+  display: flex;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+.home_content .breadcrumbs ul li, .home_content .breadcrumbs ul a {
+  color: #263238;
+  font-size: 18px;
+  font-weight: 500;
+}
+.home_content .breadcrumbs {
+  margin-bottom: 30px;
+}
+
+.cart_buttons .button {
+  width: auto !important;
 }

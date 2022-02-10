@@ -17,7 +17,7 @@ class CreateCartTable extends Migration
             $table->id();
             $table->string('session_id');
             $table->integer('user_id');
-            $table->integer('product_id')->default(0);
+            $table->integer('product_id')->references('id')->on('products')->default(0);
             $table->integer('quantity')->default(1);
             $table->timestamps();
         });

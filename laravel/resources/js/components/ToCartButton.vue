@@ -30,7 +30,7 @@ export default {
     methods: {
         addToCart() {
             axios
-                .post("/cart", { id: this.product.id })
+                .post("/cart", { product_id: this.product.id })
                 .then((response) => (this.isDisable = true));
         },
     },

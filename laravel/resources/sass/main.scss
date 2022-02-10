@@ -17,3 +17,8 @@ body {
     box-sizing: border-box;
 }
 
+#shoppingCart, #productDetails {
+    main {
+        margin-left: 0 !important;
+    }
+}

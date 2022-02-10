@@ -28,7 +28,6 @@ class HomeController extends Controller
     {
         $data = $this->productService->all();
         $inCart = $this->productService->getCartProduct();
-       // dd($inCart);
         return view('home', ['products' => $data, 'inCart' => $inCart]);
     }
 }

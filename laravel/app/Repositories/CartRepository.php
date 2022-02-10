@@ -19,7 +19,7 @@ class CartRepository extends BaseRepository
         $this->model = $cart;
     }
 
-    public function find($id)
+    public function find($id, $key = 'id')
     {
         return $this->model->where('product_id', $id)->first();
     }
@@ -28,4 +28,17 @@ class CartRepository extends BaseRepository
     {
         return $this->model->where('product_id',$id)->get()->count();
     }
+
+    public function changeQty(array $product)
+    {
+        return $this->model->where('product_id', $product['product_id'])->where('user_id', $product['user_id'])->update([
+            'quantity' => $product['quantity']
+        ]);
+    }
+
+    public function clear($key, $id)
+    {
+        return $this->model->where($key, $id)->delete();
+    }
+
 }

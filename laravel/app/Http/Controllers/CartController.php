@@ -17,8 +17,9 @@ class CartController extends Controller
 
     public function index()
     {
-        $products = $this->cartService->getCartProduct();
-        return view('cart.cart', ['products' => $products]);
+        $items = $this->cartService->getCartProduct();
+        $cartItems = $this->cartService->all();
+        return view('cart.cart', ['cartItems' => $cartItems, 'products' => $items['products'], 'total' => $items['total']]);
     }
 
     public function add(Request $request)
@@ -26,7 +27,7 @@ class CartController extends Controller
         $this->cartService->create([
             'session_id' => session()->getId(),
             'user_id' => auth()->user()->id,
-            'product_id' => $request->id
+            'product_id' => $request->product_id
         ]);
         return response()->json([$request->all()]);
     }
@@ -37,7 +38,17 @@ class CartController extends Controller
             $this->cartService->destroy($request->id);
             return back();
         }
+    }
 
+    public function changeQuantity(Request $request)
+    {
+        $this->cartService->changeQty(array_merge($request->all(), ['user_id' => auth()->user()->id]));
+        return back();
+    }
+
+    public function clear(Request $request) {
+        $this->cartService->clear('user_id', $request->user_id);
+        return back();
     }
 
 }

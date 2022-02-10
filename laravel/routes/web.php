@@ -20,7 +20,7 @@ Auth::routes();
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
-    Route::get('/product/{id}', [\App\Http\Controllers\ProductController::class, 'show'])->name('product.details');
+    Route::get('/product/{id}', [\App\Http\Controllers\ProductController::class, 'show'])->name('productDetails');
     Route::get('/catalog/all', [App\Http\Controllers\CatalogController::class, 'index'])->name('catalog');
     Route::get('/category/{id}', [App\Http\Controllers\CatalogController::class, 'show'])->name('catalog.show');
     Route::get('/settings', [App\Http\Controllers\SettingController::class, 'index'])->name('settings');
@@ -29,7 +29,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/settings/edit', [App\Http\Controllers\SettingController::class, 'update'])->name('settings.edit');
     Route::get('/cart', [App\Http\Controllers\CartController::class, 'index'])->name('shoppingCart');
     Route::post('/cart', [App\Http\Controllers\CartController::class, 'add'])->name('addToCart');
-    Route::delete('/cart', [App\Http\Controllers\CartController::class, 'delete'])->name('deleteFromCart');
+    Route::post('/cart/qty', [App\Http\Controllers\CartController::class, 'changeQuantity'])->name('changeQty');
+   Route::delete('/cart', [App\Http\Controllers\CartController::class, 'delete'])->name('deleteFromCart');
+    Route::delete('/cart/clear', [App\Http\Controllers\CartController::class, 'clear'])->name('clearCart');
 });
 
 Route::middleware(['guest'])->group(function () {
