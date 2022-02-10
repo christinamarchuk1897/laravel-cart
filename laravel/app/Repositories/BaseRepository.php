@@ -5,6 +5,7 @@ use Illuminate\Database\Eloquent\Model;
 
 abstract class BaseRepository
 {
+
     public $sortBy = 'created_at';
     public $sortOrder = 'asc';
 
@@ -20,13 +21,10 @@ abstract class BaseRepository
                 ->get();
     }
 
-    //    public function paginated($paginate)
-    //    {
-    //        return $this
-    //            ->model
-    //            ->orderBy($this->sortBy, $this->sortOrder)
-    //            ->paginate($paginate);
-    //    }
+    public function paginated($count)
+    {
+        return $this->model->paginate($count);
+    }
 
     public function create($input)
     {

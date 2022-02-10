@@ -21,7 +21,7 @@ class CatalogController extends Controller
     public function index()
     {
         $categories = $this->categoryService->getActive();
-        $products = $this->productService->all();
+        $products = $this->productService->paginated();
         return view('catalog.index', ['data' => $categories, 'route' => $this->model::ROUTE_CATALOG_SHOW, 'products' => $products]);
     }
 

@@ -11310,6 +11310,31 @@ body ul {
   margin-left: 0 !important;
 }
 
+.pagination {
+  justify-content: center;
+  margin-top: 2rem;
+}
+.pagination .page-item a,
+.pagination .page-item.active span {
+  border: 2px solid #324047;
+  color: #324047;
+}
+.pagination .page-item a:hover,
+.pagination .page-item.active span:hover {
+  background-color: #324047;
+  color: #fff;
+}
+.pagination .page-item a:focus {
+  box-shadow: none !important;
+}
+.pagination .page-item.active span {
+  background-color: #324047;
+  color: #fff;
+}
+.pagination .page-item.disabled .page-link {
+  border: 2px solid #324047;
+}
+
 #viewport {
   padding-left: 250px;
   transition: all 0.5s ease;

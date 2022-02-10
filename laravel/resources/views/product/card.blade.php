@@ -31,3 +31,6 @@
         @endforeach
     </div>
 </div>
+<div class="pagination">
+    {{$products->links('pagination::bootstrap-4')}}
+</div>

@@ -22,3 +22,28 @@ body {
         margin-left: 0 !important;
     }
 }
+
+.pagination{
+    justify-content: center;
+    margin-top: 2rem;
+    .page-item a,
+    .page-item.active span{
+        border: 2px solid #324047;
+        color: #324047;
+        &:hover{
+            background-color: #324047;
+            color: #fff;
+        }
+    }
+    .page-item a:focus {
+        box-shadow: none !important;
+    }
+
+    .page-item.active span{
+        background-color: #324047;
+        color: #fff;
+    }
+    .page-item.disabled .page-link{
+        border: 2px solid #324047;
+    }
+}

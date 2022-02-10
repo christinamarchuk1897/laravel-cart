@@ -4,6 +4,7 @@ namespace App\Services;
 
 abstract class BaseService
 {
+    const DEFAULT_COUNT = 15;
     public $repo;
 
     public function getModelClass()
@@ -16,10 +17,11 @@ abstract class BaseService
         return $this->repo->all();
     }
 
-//    public function paginated()
-//    {
-//        return $this->repo->paginated(config('paginate'));
-    //    }
+    public function paginated()
+    {
+        return $this->repo->paginated(self::DEFAULT_COUNT);
+    }
+
     public function create(array $input)
     {
         return $this->repo->create($input);

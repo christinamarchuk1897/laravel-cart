@@ -20,6 +20,6 @@ class CategoryRepository extends BaseRepository
 
    public function getProductByCategory($id)
    {
-       return $this->model::find($id)->products()->get();
+       return $this->model::find($id)->products()->paginate(15);
    }
 }
