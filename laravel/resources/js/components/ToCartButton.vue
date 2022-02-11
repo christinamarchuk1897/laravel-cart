@@ -15,7 +15,7 @@ import axios from "axios";
 export default {
     data() {
         return {
-            isDisable: this.inCart.length
+            isDisable: Array.isArray(this.inCart)
                 ? this.inCart.includes(this.product.id)
                 : this.inCart,
         };
