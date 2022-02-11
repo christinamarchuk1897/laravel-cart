@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Repositories\ProductRepository;
 use Illuminate\Support\Facades\Http;
 use App\Repositories\CartRepository;
+use Illuminate\Support\Facades\DB;
 
 
 class ProductService extends BaseService
@@ -38,6 +39,10 @@ class ProductService extends BaseService
 
     public function getCartProduct()
     {
-        return $this->cartRepository->all();
+        $products = $this->repo->all()->pluck('id');
+        $cart = $this->cartRepository->all()->pluck('product_id')->toArray();
+        return $products->filter(function($product) use ($cart){
+            return in_array($product, $cart);
+        });
     }
 }

@@ -22,14 +22,16 @@ class CatalogController extends Controller
     {
         $categories = $this->categoryService->getActive();
         $products = $this->productService->paginated();
-        return view('catalog.index', ['data' => $categories, 'route' => $this->model::ROUTE_CATALOG_SHOW, 'products' => $products]);
+        $inCart = $this->productService->getCartProduct();
+        return view('catalog.index', ['data' => $categories, 'route' => $this->model::ROUTE_CATALOG_SHOW, 'products' => $products,  'inCart' => $inCart]);
     }
 
     public function show($id)
     {
         $categories = $this->categoryService->getActive();
         $products = $this->categoryService->getProductByCategory($id);
-        return view('catalog.index', ['data' => $categories, 'route' => $this->model::ROUTE_CATALOG_SHOW, 'products' => $products]);
+        $inCart = $this->productService->getCartProduct();
+        return view('catalog.index', ['data' => $categories, 'route' => $this->model::ROUTE_CATALOG_SHOW, 'products' => $products, 'inCart' => $inCart]);
     }
 
 }

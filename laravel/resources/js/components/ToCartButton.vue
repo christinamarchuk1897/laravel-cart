@@ -15,26 +15,30 @@ import axios from "axios";
 export default {
     data() {
         return {
-            isDisable: false,
+            isDisable: this.inCart.length
+                ? this.inCart.includes(this.product.id)
+                : this.inCart,
         };
     },
     props: {
         product: {
             type: [Array, Object],
         },
-        disabled: {
-            type: Boolean,
+        inCart: {
+            type: [Array, Boolean],
             default: false,
         },
     },
+
     methods: {
         addToCart() {
             axios
                 .post("/cart", { product_id: this.product.id })
-                .then((response) => (this.isDisable = true));
+                .then((res) => (this.isDisable = true));
         },
     },
     mounted() {
+        console.log(this.inCart, this.product.id);
         if (this.disabled) {
             this.isDisable = this.disabled;
         }
