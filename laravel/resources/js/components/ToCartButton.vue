@@ -23,7 +23,7 @@ export default {
             type: [Array, Object],
         },
         disabled: {
-            type: String,
+            type: Boolean,
             default: false,
         },
     },
