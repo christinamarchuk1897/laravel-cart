@@ -37,11 +37,5 @@ export default {
                 .then((res) => (this.isDisable = true));
         },
     },
-    mounted() {
-        console.log(this.inCart, this.product.id);
-        if (this.disabled) {
-            this.isDisable = this.disabled;
-        }
-    },
 };
 </script>
