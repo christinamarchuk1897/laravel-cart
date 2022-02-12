@@ -35,7 +35,14 @@ Vue.component(
     require("./components/RemoveFromCart.vue").default
 );
 Vue.component("count-btn", require("./components/CountButton.vue").default);
-
+Vue.component(
+    "guest-to-cart",
+    require("./components/guest/GuestToCartButton.vue").default
+);
+Vue.component(
+    "guest-remove-from-cart",
+    require("./components/guest/GuestRemoveFromCart.vue").default
+);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

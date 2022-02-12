@@ -1,5 +1,14 @@
 
 <div class="container">
+    <div>
+        @guest
+            @if ($message = Session::get('success'))
+                <div class="p-4 mb-3 bg-green-400 rounded">
+                    <p class="text-green-800">{{ $message }}</p>
+                </div>
+            @endif
+        @endguest
+    </div>
     <div class="row justify-content-center">
         @foreach ($products as $key => $product)
             <div class="product-card m-2">
@@ -21,7 +30,12 @@
                         </div> --}}
                     </div>
                     <div class="product-actions">
-                        <add-to-cart :product="{{ json_encode($product) }}" :in-cart="{{ $inCart ? json_encode($inCart->toArray()) : json_encode([]) }}"></add-to-cart>
+                        @auth
+                            <add-to-cart :product="{{ json_encode($product) }}" :in-cart="{{ $inCart ? json_encode($inCart->toArray()) : json_encode([]) }}"></add-to-cart>
+                        @endauth
+                        @guest
+                            <guest-to-cart :product="{{ json_encode($product) }}"></guest-to-cart>
+                        @endguest
                         <button class="button-28" role="button">
                             <a href="{{ route('productDetails', ['id' => $product->id])}}">Details</a>
                         </button>

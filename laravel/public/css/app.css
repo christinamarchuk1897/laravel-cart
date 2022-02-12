@@ -11306,7 +11306,9 @@ body ul {
   box-sizing: border-box;
 }
 
-#shoppingCart main, #productDetails main {
+#shoppingCart main,
+#productDetails main,
+#guestShoppingCart main {
   margin-left: 0 !important;
 }
 

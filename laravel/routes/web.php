@@ -29,12 +29,16 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/cart', [App\Http\Controllers\CartController::class, 'index'])->name('shoppingCart');
     Route::post('/cart', [App\Http\Controllers\CartController::class, 'add'])->name('addToCart');
     Route::post('/cart/qty', [App\Http\Controllers\CartController::class, 'changeQuantity'])->name('changeQty');
-   Route::delete('/cart', [App\Http\Controllers\CartController::class, 'delete'])->name('deleteFromCart');
+    Route::delete('/cart', [App\Http\Controllers\CartController::class, 'delete'])->name('deleteFromCart');
     Route::delete('/cart/clear', [App\Http\Controllers\CartController::class, 'clear'])->name('clearCart');
 });
 
 Route::middleware(['guest'])->group(function () {
     Route::get('/', [App\Http\Controllers\Guest\GuestController::class, 'index'])->name('guestIndex');
     Route::get('/guest/cart', [App\Http\Controllers\Guest\GuestCartController::class, 'index'])->name('guestShoppingCart');
+    Route::post('/guest/cart', [App\Http\Controllers\Guest\GuestCartController::class, 'addToCart'])->name('guestCartStore');
+    Route::post('/guest/cart/update-cart', [App\Http\Controllers\Guest\GuestCartController::class, 'updateCart'])->name('guestCartUpdate');
+    Route::post('/guest/cart/remove', [App\Http\Controllers\Guest\GuestCartController::class, 'removeCart'])->name('guestCartRemove');
+    Route::post('/guest/cart/clear', [App\Http\Controllers\Guest\GuestCartController::class, 'clearAllCart'])->name('guestCartClear');
 });
 
