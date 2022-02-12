@@ -2,7 +2,6 @@
 
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\GuestController;
 use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
@@ -35,5 +34,7 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::middleware(['guest'])->group(function () {
-    Route::get('/', [GuestController::class, 'index'])->name('guest.index');
+    Route::get('/', [App\Http\Controllers\Guest\GuestController::class, 'index'])->name('guestIndex');
+    Route::get('/guest/cart', [App\Http\Controllers\Guest\GuestCartController::class, 'index'])->name('guestShoppingCart');
 });
+

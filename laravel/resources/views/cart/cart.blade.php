@@ -12,7 +12,12 @@
                                 <div class="home_content">
                                     <div class="breadcrumbs">
                                         <ul>
-                                            <li><a href="{{route('dashboard')}}">Home</a>/</li>
+                                            @auth
+                                                <li><a href="{{route('dashboard')}}">Home</a>/</li>
+                                            @endauth
+                                            @guest
+                                                <li><a href="{{route('guestIndex')}}">Home</a>/</li>
+                                            @endguest
                                             <li>Shopping Cart</li>
                                         </ul>
                                     </div>

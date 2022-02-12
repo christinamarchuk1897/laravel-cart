@@ -59,6 +59,25 @@
                             </li>
                         </ul>
                     @endauth
+                    @guest
+                        <ul class="nav-bar-items">
+                            <li>
+                                <a href="{{ route('guestIndex') }}">
+                                    <i class="zmdi zmdi-view-dashboard"></i> Dashboard
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('catalog') }}">
+                                    <i class="zmdi zmdi-widgets"></i> Catalog
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('guestShoppingCart') }}">
+                                    <i class="zmdi zmdi-settings"></i> Cart
+                                </a>
+                            </li>
+                        </ul>
+                     @endguest
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
