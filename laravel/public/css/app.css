@@ -11689,7 +11689,9 @@ nav.navbar .nav-bar-items a {
   background: none;
   color: #CFD8DC;
   font-size: 14px;
+  font-weight: 500;
   display: inline-block;
+  text-decoration: none;
 }
 nav.navbar .nav-bar-items a:hover {
   color: #ECEFF1;

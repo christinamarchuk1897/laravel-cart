@@ -1,7 +1,12 @@
 <template>
-    <button class="button-28 add-btn" role="button" @click="addToCart">
-        <a href="#">Add to cart</a>
-        <!-- <a href="#">Added to cart</a> -->
+    <button
+        class="button-28 add-btn"
+        role="button"
+        @click="addToCart"
+        :disabled="disable"
+    >
+        <a href="#" v-if="!disable">Add to cart</a>
+        <a href="#" v-else>Added to cart</a>
     </button>
 </template>
 
@@ -9,19 +14,24 @@
 import axios from "axios";
 export default {
     data() {
-        return {};
+        return {
+            disable: this.disabled,
+        };
     },
     props: {
         product: {
             type: [Object],
         },
+        disabled: {
+            type: [Boolean],
+            default: false,
+        },
     },
-    mounted() {},
     methods: {
         addToCart() {
             axios
                 .post("/guest/cart", { product: this.product })
-                .then((res) => console.log(res.data, this.product));
+                .then((res) => (this.disable = true));
         },
     },
 };

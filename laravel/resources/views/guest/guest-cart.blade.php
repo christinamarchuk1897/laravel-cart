@@ -47,7 +47,6 @@
 
                             <!-- Cart Item -->
                                 @foreach ($products as $product)
-                                    {{-- {{dd($product->attributes->image)}} --}}
                                     <div class="cart_item d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-start">
                                         <!-- Name -->
                                             <div class="cart_item_product d-flex flex-row align-items-center justify-content-start">
@@ -65,13 +64,13 @@
                                             <!-- Quantity -->
                                             <div class="cart_item_quantity">
                                                 <div class="product_quantity_container">
-                                                    {{-- <count-btn :count="{{ json_encode($cartItems[$key]->quantity) }}" :id="{{ $product->id }}"></count-btn> --}}
+                                                    <guest-count-btn :count="{{ json_encode($product->quantity) }}" :id="{{ json_encode($product->id) }}"></guest-count-btn>
                                                 </div>
                                             </div>
                                         <!-- Total -->
-                                        {{-- <div class="cart_item_total">{{ $product->price * $cartItems[$key]->quantity }}$</div> --}}
+                                        <div class="cart_item_total">{{ $product->price * $product->quantity }}$</div>
                                         <div class="cart_item_remove">
-                                            {{-- <remove-from-cart :id="{{ json_encode($product->id) }}"></remove-from-cart> --}}
+                                            <guest-remove-from-cart :id="{{ json_encode($product->id) }}"></guest-remove-from-cart>
                                         </div>
                                     </div>
                                 @endforeach
@@ -80,9 +79,7 @@
                     <div class="row row_cart_buttons">
                         <div class="col">
                             <div class="cart_buttons d-flex w-100 product-actions">
-                                <guest-remove-from-cart></guest-remove-from-cart>
-                                {{-- <remove-from-cart :is-cart="{{ json_encode(true) }}" :id="{{ json_encode(auth()->user()->id) }}"></remove-from-cart>
-                                <div class="button-28 button continue_shopping_button add-btn"><a href="{{route('dashboard')}}">Continue shopping</a></div> --}}
+                                <guest-remove-from-cart :is-clear="{{ json_encode(true) }}"></guest-remove-from-cart>
                             </div>
                         </div>
                     </div>
@@ -108,8 +105,8 @@
                                 <div class="cart_total_container">
                                     <ul>
                                         <li class="d-flex flex-row align-items-center justify-content-start">
-                                            <div class="cart_total_title">Total:</div>
-                                            {{-- <div class="cart_total_value ml-auto">{{$total}}$</div> --}}
+                                            <div class="cart_total_title">Total: </div>
+                                            <div class="cart_total_value ml-auto">{{ Cart::getTotal() }}$</div>
                                         </li>
                                     </ul>
                                 </div>

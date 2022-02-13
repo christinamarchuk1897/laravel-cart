@@ -34,7 +34,8 @@
                             <add-to-cart :product="{{ json_encode($product) }}" :in-cart="{{ $inCart ? json_encode($inCart->toArray()) : json_encode([]) }}"></add-to-cart>
                         @endauth
                         @guest
-                            <guest-to-cart :product="{{ json_encode($product) }}"></guest-to-cart>
+                        {{-- {{dd(Cart::getConditions())}} --}}
+                            <guest-to-cart :product="{{ json_encode($product) }}" :disabled="{{ isset(Cart::getContent()[$product->id]) ? json_encode(true) : json_encode(false) }}"></guest-to-cart>
                         @endguest
                         <button class="button-28" role="button">
                             <a href="{{ route('productDetails', ['id' => $product->id])}}">Details</a>

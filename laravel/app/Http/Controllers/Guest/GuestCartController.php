@@ -9,7 +9,7 @@ class GuestCartController extends Controller
     public function index()
     {
         $products = \Cart::getContent();
-        return view('guest.guest-cart', ['products' => $products]);
+        return view('guest.guest-cart', ['products' => count($products) > 0 ? $products : null]);
     }
 
     public function addToCart(Request $request)

@@ -19,6 +19,7 @@ class CartController extends Controller
     {
         $items = $this->cartService->getCartProduct();
         $cartItems = $this->cartService->all();
+
         return view('cart.cart', ['cartItems' => $cartItems, 'products' => $items['products'], 'total' => $items['total']]);
     }
 
