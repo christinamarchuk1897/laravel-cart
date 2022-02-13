@@ -40,5 +40,8 @@ Route::middleware(['guest'])->group(function () {
     Route::post('/guest/cart/update-cart', [App\Http\Controllers\Guest\GuestCartController::class, 'updateCart'])->name('guestCartUpdate');
     Route::post('/guest/cart/remove', [App\Http\Controllers\Guest\GuestCartController::class, 'removeCart'])->name('guestCartRemove');
     Route::post('/guest/cart/clear', [App\Http\Controllers\Guest\GuestCartController::class, 'clearAllCart'])->name('guestCartClear');
+    Route::get('/guest/catalog/all', [App\Http\Controllers\Guest\GuestCatalogController::class, 'index'])->name('guestCatalog');
+    Route::get('/guest/category/{id}', [App\Http\Controllers\Guest\GuestCatalogController::class, 'show'])->name('guestCatalogShow');
+    Route::get('/guest/product/{id}', [\App\Http\Controllers\Guest\GuestProductController::class, 'show'])->name('guestProductDetails');
 });
 

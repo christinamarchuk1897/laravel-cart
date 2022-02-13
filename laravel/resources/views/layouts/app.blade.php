@@ -67,7 +67,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ route('catalog') }}">
+                                <a href="{{ route('guestCatalog') }}">
                                     <i class="zmdi zmdi-widgets"></i> Catalog
                                 </a>
                             </li>

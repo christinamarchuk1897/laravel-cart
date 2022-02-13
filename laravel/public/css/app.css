@@ -11308,7 +11308,9 @@ body ul {
 
 #shoppingCart main,
 #productDetails main,
-#guestShoppingCart main {
+#guestShoppingCart main,
+#guestProductDetails main,
+#login main {
   margin-left: 0 !important;
 }
 

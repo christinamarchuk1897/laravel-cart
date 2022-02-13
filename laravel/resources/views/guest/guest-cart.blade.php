@@ -56,7 +56,7 @@
                                                 </div>
                                             </div>
                                             <div class="cart_item_name_container">
-                                                <div class="cart_item_name"><a href="{{ route('productDetails', ['id' => $product->id]) }}">{{ $product->name }}</a></div>
+                                                <div class="cart_item_name"><a href="{{ route('guestProductDetails', ['id' => $product->id]) }}">{{ $product->name }}</a></a></div>
                                             </div>
                                             </div>
                                             <!-- Price -->
