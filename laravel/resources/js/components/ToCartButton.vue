@@ -5,8 +5,8 @@
         @click="addToCart"
         :disabled="isDisable"
     >
-        <a v-if="!isDisable" href="#">Add to cart</a>
-        <a v-else href="#">Added to cart</a>
+        <a v-if="!isDisable" href="">Add to cart</a>
+        <a v-else href="">Added to cart</a>
     </button>
 </template>
 
@@ -29,7 +29,8 @@ export default {
     },
     mounted() {},
     methods: {
-        addToCart() {
+        addToCart(e) {
+            e.preventDefault();
             axios
                 .post("/cart", { product: this.product })
                 .then((res) => (this.isDisable = true));

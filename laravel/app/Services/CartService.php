@@ -2,57 +2,60 @@
 
 namespace App\Services;
 
-use App\Repositories\CartRepository;
 
-class CartService extends BaseService
+class CartService
 {
-    const TOTAL = 0;
-    public $repo;
-
-    public function __construct(CartRepository $cartRepository)
+    public function getProducts()
     {
-        $this->repo = $cartRepository;
+        return \Cart::getContent();
     }
 
-    public function getCartProduct()
+    public function addToCart($request)
     {
-        $cartData = $this->repo->all();
-        $total = self::TOTAL;
-        if ($cartData->count() > 0) {
-            foreach ($cartData as $key => $item) {
-                $products[] = $item->product()->get()->first();
-                $total += $item->quantity * $products[$key]->price;
-            }
+        \Cart::add([
+            'id' => $request->product['id'],
+            'product_id' => $request->product['id'],
+            'name' => $request->product['title'],
+            'price' => $request->product['price'],
+            'quantity' => $request->product['quantity'],
+            'attributes' => array(
+                'image' => $request->product['image'],
+                'session_id' => session()->getId()
+            )
+        ]);
 
-            return ['products' => $products, 'total' =>$total];
-        }
+        return session()->flash('success', 'Product is Added to Cart Successfully !');
     }
 
-    public function findProductInCart($id)
+    public function updateCart($request)
     {
-        return $this->repo->findProductInCart($id);
+        \Cart::update(
+            $request->id,
+            [
+                'quantity' => [
+                    'relative' => false,
+                    'value' => $request->quantity
+                ],
+            ]
+        );
+        session()->flash('success', 'Item Cart is Updated Successfully !');
+
+        return redirect()->route('shoppingCart');
     }
 
-    public function changeQty($product)
+    public function removeCart($request)
     {
-        return $this->repo->changeQty($product);
+        \Cart::remove($request->id);
+        session()->flash('success', 'Item Cart Remove Successfully !');
+
+        return redirect()->route('shoppingCart');
     }
 
-    public function clear($key, $id)
+    public function clearAllCart($request)
     {
-        return $this->repo->clear($key, $id);
-    }
-
-    public function getCartItemsFromSession($items, $userId) {
-        if (!$items->isEmpty()) {
-            foreach ($items as $item) {
-                $this->repo->createItemFromSession([
-                    'session_id' => $item->attributes->session_id,
-                    'user_id' => $userId,
-                    'product_id' => $item->id,
-                    'quantity' => $item->quantity
-                ]);
-            }
+        if ($request->id) {
+            \Cart::clear();
+            session()->flash('success', 'All Item Cart Clear Successfully !');
         }
     }
 }

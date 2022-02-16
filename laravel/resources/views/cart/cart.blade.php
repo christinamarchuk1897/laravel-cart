@@ -3,6 +3,11 @@
 @section('content')
     <div class="container">
         <div class="home">
+            @if ($message = Session::get('success'))
+                <div class="p-4 mb-3 bg-green-400 rounded">
+                    <p class="text-green-800">{{ $message }}</p>
+                </div>
+            @endif
             <div class="home_container">
                 <div class="home_background" style="background-image:url(images/cart.jpg)"></div>
                 <div class="home_content_container">
