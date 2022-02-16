@@ -18,6 +18,6 @@ class GuestProductController extends ProductController
     public function show($id)
     {
         $data = $this->productService->find($id);
-        return view('product.details', ['product' => $data, 'inCart' => isset(\Cart::getContent()[$data->id]) ? true : false]);
+        return view('product.details', ['product' => $data, 'inCart' => \Cart::getContent()]);
     }
 }

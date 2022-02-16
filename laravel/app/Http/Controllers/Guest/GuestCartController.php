@@ -3,68 +3,45 @@
 namespace App\Http\Controllers\Guest;
 
 use Illuminate\Http\Request;
+use App\Services\CartService;
 
 class GuestCartController extends Controller
 {
+
+    private $cartService;
+
+    public function __construct(CartService $cartService)
+    {
+        $this->cartService = $cartService;
+    }
+
     public function index()
     {
-        $products = \Cart::getContent();
-        if(!session()->get('cart')->isEmpty()) {
-            $products = $products->merge(session()->get('cart'))->unique();
-        }
-
-        return view('guest.guest-cart', ['products' => count($products) > 0 ? $products : null]);
+        $products = $this->cartService->getProducts();
+        return view('cart.cart', ['products' => $products]);
     }
 
     public function addToCart(Request $request)
     {
-        \Cart::add([
-            'id' => $request->product['id'],
-            'product_id' => $request->product['id'],
-            'name' => $request->product['title'],
-            'price' => $request->product['price'],
-            'quantity' => $request->product['quantity'],
-            'attributes' => array(
-                'image' => $request->product['image'],
-                'session_id' => session()->getId()
-            )
-        ]);
-        session()->put(['cart' => \Cart::getContent()]);
+        $this->cartService->addToCart($request);
         return session()->flash('success', 'Product is Added to Cart Successfully !');
     }
 
     public function updateCart(Request $request)
     {
-        \Cart::update(
-            $request->id,
-            [
-                'quantity' => [
-                    'relative' => false,
-                    'value' => $request->quantity
-                ],
-            ]
-        );
-        session()->flash('success', 'Item Cart is Updated Successfully !');
-
+        $this->cartService->updateCart($request);
         return redirect()->route('guestShoppingCart');
     }
 
     public function removeCart(Request $request)
     {
-        \Cart::remove($request->id);
-        session()->flash('success', 'Item Cart Remove Successfully !');
-
+        $this->cartService->removeCart($request);
         return redirect()->route('guestShoppingCart');
     }
 
     public function clearAllCart(Request $request)
     {
-        if ($request->id) {
-            \Cart::clear();
-            session()->put(['cart'=> \Cart::getContent()]);
-            session()->flash('success', 'All Item Cart Clear Successfully !');
-        }
-
+        $this->cartService->clearAllCart($request);
         return redirect()->route('guestShoppingCart');
     }
 }

@@ -18,7 +18,7 @@ class GuestController extends Controller
     public function index()
     {
         $products = $this->productService->paginated();
-
-        return view('home', ['products' => $products]);
+        $inCart = \Cart::getContent();
+        return view('home', ['products' => $products, 'inCart' => $inCart]);
     }
 }
