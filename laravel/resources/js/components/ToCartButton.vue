@@ -15,9 +15,7 @@ import axios from "axios";
 export default {
     data() {
         return {
-            isDisable: Array.isArray(this.inCart)
-                ? this.inCart.includes(this.product.id)
-                : this.inCart,
+            isDisable: this.inCart[this.product.id] ? true : false,
         };
     },
     props: {
@@ -25,17 +23,15 @@ export default {
             type: [Array, Object],
         },
         inCart: {
-            type: [Array, Boolean, Object],
+            type: [Array, Object],
             default: false,
         },
     },
-    mounted() {
-        console.log(this.inCart);
-    },
+    mounted() {},
     methods: {
         addToCart() {
             axios
-                .post("/cart", { product_id: this.product.id })
+                .post("/cart", { product: this.product })
                 .then((res) => (this.isDisable = true));
         },
     },

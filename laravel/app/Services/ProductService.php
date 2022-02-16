@@ -36,13 +36,4 @@ class ProductService extends BaseService
     {
         return $this->repo->getByCategoryId($id);
     }
-
-    public function getCartProduct()
-    {
-        $products = $this->repo->all()->pluck('id');
-        $cart = $this->cartRepository->all()->pluck('product_id')->toArray();
-        return $products->filter(function($product) use ($cart){
-            return in_array($product, $cart);
-        });
-    }
 }

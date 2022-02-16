@@ -2,6 +2,6 @@
 
 @section('content')
 @include('sidebar')
-@include('product.card', ['products' => $products, 'inCart' => isset($inCart) ? $inCart : false])
+@include('product.card', ['products' => $products, 'inCart' => $inCart])
 @endsection
 

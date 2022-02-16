@@ -27,10 +27,10 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/settings/product/create', [App\Http\Controllers\ProductController::class, 'create']);
     Route::get('/settings/edit', [App\Http\Controllers\SettingController::class, 'update'])->name('settings.edit');
     Route::get('/cart', [App\Http\Controllers\CartController::class, 'index'])->name('shoppingCart');
-    Route::post('/cart', [App\Http\Controllers\CartController::class, 'add'])->name('addToCart');
-    Route::post('/cart/qty', [App\Http\Controllers\CartController::class, 'changeQuantity'])->name('changeQty');
-    Route::delete('/cart', [App\Http\Controllers\CartController::class, 'delete'])->name('deleteFromCart');
-    Route::delete('/cart/clear', [App\Http\Controllers\CartController::class, 'clear'])->name('clearCart');
+    Route::post('/cart', [App\Http\Controllers\CartController::class, 'addToCart'])->name('addToCart');
+    Route::post('/cart/update-cart', [App\Http\Controllers\CartController::class, 'updateCart'])->name('changeQty');
+    Route::post('/cart/remove', [App\Http\Controllers\CartController::class, 'removeCart'])->name('deleteFromCart');
+    Route::post('/cart/clear', [App\Http\Controllers\CartController::class, 'clearAllCart'])->name('clearCart');
     Route::post('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
 });
 

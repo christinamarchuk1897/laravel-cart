@@ -14,45 +14,61 @@ class CartController extends Controller
         $this->cartService = $cartService;
     }
 
-
     public function index()
     {
-        $items = $this->cartService->getCartProduct();
-        $cartItems = $this->cartService->all();
-        dd($cartItems, $items);
-        return view('cart.cart', ['cartItems' => $cartItems, 'products' => $items['products'], 'total' => $items['total']]);
+        $products = \Cart::getContent();
+
+        return view('cart.cart', ['products' => $products]);
     }
 
-    public function add(Request $request)
+    public function addToCart(Request $request)
     {
-        $this->cartService->create([
-            'session_id' => session()->getId(),
-            'user_id' => auth()->user()->id,
-            'product_id' => $request->product_id
+        \Cart::add([
+            'id' => $request->product['id'],
+            'product_id' => $request->product['id'],
+            'name' => $request->product['title'],
+            'price' => $request->product['price'],
+            'quantity' => $request->product['quantity'],
+            'attributes' => array(
+                'image' => $request->product['image'],
+                'session_id' => session()->getId()
+            )
         ]);
-        return response()->json([$request->all()]);
+
+        return session()->flash('success', 'Product is Added to Cart Successfully !');
     }
 
-    public function delete(Request $request)
+    public function updateCart(Request $request)
+    {
+        \Cart::update(
+            $request->id,
+            [
+                'quantity' => [
+                    'relative' => false,
+                    'value' => $request->quantity
+                ],
+            ]
+        );
+        session()->flash('success', 'Item Cart is Updated Successfully !');
+
+        return redirect()->route('shoppingCart');
+    }
+
+    public function removeCart(Request $request)
     {
         \Cart::remove($request->id);
-        if ($request->id !== null) {
-            $this->cartService->destroy($request->id);
-            session()->put(['cart' => \Cart::getContent()]);
-            return back();
-        }
+        session()->flash('success', 'Item Cart Remove Successfully !');
+
+        return redirect()->route('shoppingCart');
     }
 
-    public function changeQuantity(Request $request)
+    public function clearAllCart(Request $request)
     {
-        $this->cartService->changeQty(array_merge($request->all(), ['user_id' => auth()->user()->id]));
-        return back();
-    }
+        if ($request->id) {
+            \Cart::clear();
+            session()->flash('success', 'All Item Cart Clear Successfully !');
+        }
 
-    public function clear(Request $request) {
-        \Cart::clear();
-        $this->cartService->clear('user_id', $request->user_id);
-        return back();
+        return redirect()->route('shoppingCart');
     }
-
 }

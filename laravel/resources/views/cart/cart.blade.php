@@ -28,7 +28,7 @@
 
         <div class="cart_info">
             <div class="container">
-                @if (isset($products))
+                @if (!$products->isEmpty())
                     <div class="row">
                         <div class="col">
                             <!-- Column Titles -->
@@ -44,15 +44,15 @@
                         <div class="col">
 
                             <!-- Cart Item -->
-                                @foreach ($products as $key => $product)
+                                @foreach ($products as $product)
                                     <div class="cart_item d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-start">
                                         <!-- Name -->
                                             <div class="cart_item_product d-flex flex-row align-items-center justify-content-start">
                                             <div class="cart_item_image">
-                                                <div><img src="{{ $product->image }}" alt=""></div>
+                                                <div><img src="{{ $product->attributes->image }}" alt=""></div>
                                             </div>
                                             <div class="cart_item_name_container">
-                                                <div class="cart_item_name"><a href="{{ route('productDetails', ['id' => $product->id]) }}">{{ $product->title }}</a></div>
+                                                <div class="cart_item_name"><a href="{{ route('productDetails', ['id' => $product->id]) }}">{{ $product->name }}</a></div>
                                             </div>
                                             </div>
                                             <!-- Price -->
@@ -60,11 +60,11 @@
                                             <!-- Quantity -->
                                             <div class="cart_item_quantity">
                                                 <div class="product_quantity_container">
-                                                    <count-btn :count="{{ json_encode($cartItems[$key]->quantity) }}" :id="{{ $product->id }}"></count-btn>
+                                                    <count-btn :count="{{ json_encode($product->quantity) }}" :id="{{ $product->id }}"></count-btn>
                                                 </div>
                                             </div>
                                         <!-- Total -->
-                                        <div class="cart_item_total">{{ $product->price * $cartItems[$key]->quantity }}$</div>
+                                        <div class="cart_item_total">{{ $product->price * $product->quantity }}$</div>
                                         <div class="cart_item_remove">
                                             <remove-from-cart :id="{{ json_encode($product->id) }}"></remove-from-cart>
                                         </div>
@@ -75,7 +75,7 @@
                     <div class="row row_cart_buttons">
                         <div class="col">
                             <div class="cart_buttons d-flex w-100 product-actions">
-                                <remove-from-cart :is-cart="{{ json_encode(true) }}" :id="{{ json_encode(auth()->user()->id) }}"></remove-from-cart>
+                                <remove-from-cart :is-cart="{{ json_encode(true) }}"></remove-from-cart>
                                 <div class="button-28 button continue_shopping_button add-btn"><a href="{{route('dashboard')}}">Continue shopping</a></div>
                             </div>
                         </div>
@@ -103,7 +103,7 @@
                                     <ul>
                                         <li class="d-flex flex-row align-items-center justify-content-start">
                                             <div class="cart_total_title">Total:</div>
-                                            <div class="cart_total_value ml-auto">{{$total}}$</div>
+                                            <div class="cart_total_value ml-auto">{{ Cart::getTotal() }}$</div>
                                         </li>
                                     </ul>
                                 </div>

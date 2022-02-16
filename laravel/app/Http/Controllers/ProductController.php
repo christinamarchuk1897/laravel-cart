@@ -37,7 +37,7 @@ class ProductController extends Controller
     {
         $data = $this->productService->find($id);
 
-        return view('product.details', ['product' => $data, 'inCart' => $this->cartService->findProductInCart($id) ? true : false]);
+        return view('product.details', ['product' => $data, 'inCart' => \Cart::getContent()]);
     }
 
     public function showForm()

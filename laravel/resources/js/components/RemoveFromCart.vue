@@ -32,12 +32,12 @@ export default {
     methods: {
         removeFromCart() {
             axios
-                .delete("/cart", { params: { id: this.id } })
+                .post("/cart/remove", { id: this.id })
                 .then((response) => location.reload());
         },
         clearCart() {
             axios
-                .delete("/cart/clear", { params: { user_id: this.id } })
+                .post("/cart/clear", { id: 1 })
                 .then((response) => location.reload());
         },
     },

@@ -22,7 +22,7 @@
                     </div>
                     <div class="product-actions">
                         @auth
-                            <add-to-cart :product="{{ json_encode($product) }}" :in-cart="{{ $inCart ? json_encode($inCart->toArray()) : json_encode([]) }}"></add-to-cart>
+                            <add-to-cart :product="{{ json_encode($product) }}" :in-cart="{{ $inCart }}"></add-to-cart>
                             <button class="button-28" role="button">
                                 <a href="{{ route('productDetails', ['id' => $product->id])}}">Details</a>
                             </button>

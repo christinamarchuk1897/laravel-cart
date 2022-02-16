@@ -14,7 +14,7 @@
                     {{$product->description}}
                 </p>
             </div>
-            <add-to-cart :product="{{ json_encode($product) }}" :in-cart="{{ json_encode($inCart)}}"></add-to-cart>
+            <add-to-cart :product="{{ json_encode($product) }}" :in-cart="{{ $inCart}}"></add-to-cart>
         </div>
     </div>
 @endsection

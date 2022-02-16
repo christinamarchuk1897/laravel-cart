@@ -22,7 +22,7 @@ class CatalogController extends Controller
     {
         $categories = $this->categoryService->getActive();
         $products = $this->productService->paginated();
-        $inCart = $this->productService->getCartProduct();
+        $inCart = \Cart::getContent();
         return view('catalog.index', ['data' => $categories, 'route' => $this->model::ROUTE_CATALOG_SHOW, 'products' => $products,  'inCart' => $inCart]);
     }
 
@@ -30,7 +30,7 @@ class CatalogController extends Controller
     {
         $categories = $this->categoryService->getActive();
         $products = $this->categoryService->getProductByCategory($id);
-        $inCart = $this->productService->getCartProduct();
+        $inCart = \Cart::getContent();
         return view('catalog.index', ['data' => $categories, 'route' => $this->model::ROUTE_CATALOG_SHOW, 'products' => $products, 'inCart' => $inCart]);
     }
 

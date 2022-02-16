@@ -43,14 +43,14 @@ export default {
             this.changeQuantity();
         },
         decrementCount() {
-            if (this.qty !== 1) {
+            if (this.qty > 1) {
                 this.qty--;
                 this.changeQuantity();
             }
         },
         changeQuantity() {
             axios
-                .post("/cart/qty", { product_id: this.id, quantity: this.qty })
+                .post("/cart/update-cart", { id: this.id, quantity: this.qty })
                 .then((resp) => location.reload());
         },
     },

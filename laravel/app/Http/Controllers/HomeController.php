@@ -29,9 +29,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $this->cartService->getCartItemsFromSession(\Cart::getContent(), auth()->user()->id);
         $data = $this->productService->paginated();
-        $inCart = $this->productService->getCartProduct();
+        $inCart = \Cart::getContent();
         return view('home', ['products' => $data, 'inCart' => $inCart]);
     }
 }
