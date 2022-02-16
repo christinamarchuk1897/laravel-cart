@@ -25,11 +25,13 @@ export default {
             type: [Array, Object],
         },
         inCart: {
-            type: [Array, Boolean],
+            type: [Array, Boolean, Object],
             default: false,
         },
     },
-
+    mounted() {
+        console.log(this.inCart);
+    },
     methods: {
         addToCart() {
             axios

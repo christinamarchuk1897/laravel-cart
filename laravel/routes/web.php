@@ -31,6 +31,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/cart/qty', [App\Http\Controllers\CartController::class, 'changeQuantity'])->name('changeQty');
     Route::delete('/cart', [App\Http\Controllers\CartController::class, 'delete'])->name('deleteFromCart');
     Route::delete('/cart/clear', [App\Http\Controllers\CartController::class, 'clear'])->name('clearCart');
+    Route::post('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
 });
 
 Route::middleware(['guest'])->group(function () {

@@ -40,5 +40,7 @@ class CartRepository extends BaseRepository
     {
         return $this->model->where($key, $id)->delete();
     }
-
+    public function createItemFromSession($data){
+        $this->model->firstOrCreate($data);
+    }
 }

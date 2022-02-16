@@ -42,4 +42,17 @@ class CartService extends BaseService
     {
         return $this->repo->clear($key, $id);
     }
+
+    public function getCartItemsFromSession($items, $userId) {
+        if (!$items->isEmpty()) {
+            foreach ($items as $item) {
+                $this->repo->createItemFromSession([
+                    'session_id' => $item->attributes->session_id,
+                    'user_id' => $userId,
+                    'product_id' => $item->id,
+                    'quantity' => $item->quantity
+                ]);
+            }
+        }
+    }
 }

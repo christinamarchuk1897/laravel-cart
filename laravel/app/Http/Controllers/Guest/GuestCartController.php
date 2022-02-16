@@ -9,6 +9,10 @@ class GuestCartController extends Controller
     public function index()
     {
         $products = \Cart::getContent();
+        if(!session()->get('cart')->isEmpty()) {
+            $products = $products->merge(session()->get('cart'))->unique();
+        }
+
         return view('guest.guest-cart', ['products' => count($products) > 0 ? $products : null]);
     }
 
@@ -22,10 +26,10 @@ class GuestCartController extends Controller
             'quantity' => $request->product['quantity'],
             'attributes' => array(
                 'image' => $request->product['image'],
+                'session_id' => session()->getId()
             )
         ]);
-
-
+        session()->put(['cart' => \Cart::getContent()]);
         return session()->flash('success', 'Product is Added to Cart Successfully !');
     }
 
@@ -40,7 +44,6 @@ class GuestCartController extends Controller
                 ],
             ]
         );
-
         session()->flash('success', 'Item Cart is Updated Successfully !');
 
         return redirect()->route('guestShoppingCart');
@@ -58,7 +61,7 @@ class GuestCartController extends Controller
     {
         if ($request->id) {
             \Cart::clear();
-
+            session()->put(['cart'=> \Cart::getContent()]);
             session()->flash('success', 'All Item Cart Clear Successfully !');
         }
 

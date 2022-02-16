@@ -19,7 +19,7 @@ class CartController extends Controller
     {
         $items = $this->cartService->getCartProduct();
         $cartItems = $this->cartService->all();
-
+        dd($cartItems, $items);
         return view('cart.cart', ['cartItems' => $cartItems, 'products' => $items['products'], 'total' => $items['total']]);
     }
 
@@ -35,8 +35,10 @@ class CartController extends Controller
 
     public function delete(Request $request)
     {
+        \Cart::remove($request->id);
         if ($request->id !== null) {
             $this->cartService->destroy($request->id);
+            session()->put(['cart' => \Cart::getContent()]);
             return back();
         }
     }
@@ -48,6 +50,7 @@ class CartController extends Controller
     }
 
     public function clear(Request $request) {
+        \Cart::clear();
         $this->cartService->clear('user_id', $request->user_id);
         return back();
     }
