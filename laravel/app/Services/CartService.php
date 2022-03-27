@@ -7,7 +7,23 @@ class CartService
 {
     public function getProducts()
     {
-        return \Cart::getContent();
+        $sessionItems = session()->get('cart');
+        //$sessionItems->isEmpty() ? \Cart::getContent() : \Cart::add($sessionItems);
+        if (!$sessionItems->isEmpty()) {
+            foreach ($sessionItems as $item) {
+            \Cart::add([
+                'id' => $item->id,
+                'product_id' => $item->id,
+                'name' => $item->name,
+                'price' =>$item->price,
+                'quantity' => $item->quantity,
+                'attributes' => array(
+                'image' => $item->attributes['image'])
+                ]);
+            }
+        }
+        $products = \Cart::getContent();
+        return $products;
     }
 
     public function addToCart($request)
@@ -20,10 +36,9 @@ class CartService
             'quantity' => $request->product['quantity'],
             'attributes' => array(
                 'image' => $request->product['image'],
-                'session_id' => session()->getId()
             )
         ]);
-
+        session()->put(['cart' => \Cart::getContent()]);
         return session()->flash('success', 'Product is Added to Cart Successfully !');
     }
 
@@ -38,14 +53,15 @@ class CartService
                 ],
             ]
         );
+        session()->put(['cart' => \Cart::getContent()]);
         session()->flash('success', 'Item Cart is Updated Successfully !');
-
         return redirect()->route('shoppingCart');
     }
 
     public function removeCart($request)
     {
         \Cart::remove($request->id);
+        session()->put(['cart' => \Cart::getContent()]);
         session()->flash('success', 'Item Cart Remove Successfully !');
 
         return redirect()->route('shoppingCart');
@@ -55,6 +71,7 @@ class CartService
     {
         if ($request->id) {
             \Cart::clear();
+            session()->put(['cart' => \Cart::getContent()]);
             session()->flash('success', 'All Item Cart Clear Successfully !');
         }
     }

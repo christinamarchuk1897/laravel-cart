@@ -17,7 +17,7 @@ class CartController extends Controller
     public function index()
     {
         $products = $this->cartService->getProducts();
-        return view('cart.cart', ['products' => $products]);
+        return view('cart.cart', ['products' => $products, 'guest' => false]);
     }
 
     public function addToCart(Request $request)

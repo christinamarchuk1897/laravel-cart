@@ -18,7 +18,9 @@
 import axios from "axios";
 export default {
     data() {
-        return {};
+        return {
+            isGuest: this.guest ? "/guest" : "",
+        };
     },
     props: {
         id: {
@@ -28,16 +30,20 @@ export default {
             type: Boolean,
             default: false,
         },
+        guest: {
+            type: [Boolean],
+            default: false,
+        },
     },
     methods: {
         removeFromCart() {
             axios
-                .post("/cart/remove", { id: this.id })
+                .post(`${this.isGuest}/cart/remove`, { id: this.id })
                 .then((response) => location.reload());
         },
         clearCart() {
             axios
-                .post("/cart/clear", { id: 1 })
+                .post(`${this.isGuest}/cart/clear`, { id: 1 })
                 .then((response) => location.reload());
         },
     },

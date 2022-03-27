@@ -18,7 +18,7 @@ class GuestCartController extends Controller
     public function index()
     {
         $products = $this->cartService->getProducts();
-        return view('cart.cart', ['products' => $products]);
+        return view('cart.cart', ['products' => $products, 'guest' => true]);
     }
 
     public function addToCart(Request $request)

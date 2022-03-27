@@ -24,6 +24,7 @@ export default {
     data() {
         return {
             qty: this.count,
+            isGuest: this.guest ? "/guest" : "",
         };
     },
 
@@ -34,6 +35,10 @@ export default {
         },
         id: {
             type: [Number],
+        },
+        guest: {
+            type: [Boolean],
+            default: false,
         },
     },
 
@@ -49,8 +54,12 @@ export default {
             }
         },
         changeQuantity() {
+            console.log();
             axios
-                .post("/cart/update-cart", { id: this.id, quantity: this.qty })
+                .post(`${this.isGuest}/cart/update-cart`, {
+                    id: this.id,
+                    quantity: this.qty,
+                })
                 .then((resp) => location.reload());
         },
     },

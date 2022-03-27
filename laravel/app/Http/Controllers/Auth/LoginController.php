@@ -41,12 +41,12 @@ class LoginController extends Controller
 
     public function logout(Request $request)
     {
-        $data =  session()->get('cart');
+        $data = session()->get('cart');
         $this->guard()->logout();
 
         $request->session()->invalidate();
         $request->session()->regenerate();
-        session()->put('cart', $data);
+        session()->put(['cart' => $data]);
 
         return $this->loggedOut($request) ?: redirect('/');
     }

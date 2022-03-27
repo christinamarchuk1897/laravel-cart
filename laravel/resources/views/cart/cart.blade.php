@@ -65,13 +65,13 @@
                                             <!-- Quantity -->
                                             <div class="cart_item_quantity">
                                                 <div class="product_quantity_container">
-                                                    <count-btn :count="{{ json_encode($product->quantity) }}" :id="{{ $product->id }}"></count-btn>
+                                                    <count-btn :count="{{ json_encode($product->quantity) }}" :id="{{ $product->id }}" :guest="{{ json_encode($guest) }}"></count-btn>
                                                 </div>
                                             </div>
                                         <!-- Total -->
                                         <div class="cart_item_total">{{ $product->price * $product->quantity }}$</div>
                                         <div class="cart_item_remove">
-                                            <remove-from-cart :id="{{ json_encode($product->id) }}"></remove-from-cart>
+                                            <remove-from-cart :id="{{ json_encode($product->id) }}" :guest="{{ json_encode($guest) }}"></remove-from-cart>
                                         </div>
                                     </div>
                                 @endforeach
@@ -80,7 +80,7 @@
                     <div class="row row_cart_buttons">
                         <div class="col">
                             <div class="cart_buttons d-flex w-100 product-actions">
-                                <remove-from-cart :is-cart="{{ json_encode(true) }}"></remove-from-cart>
+                                <remove-from-cart :is-cart="{{ json_encode(true) }}" :guest="{{ json_encode($guest) }}"></remove-from-cart>
                                 <div class="button-28 button continue_shopping_button add-btn"><a href="{{route('dashboard')}}">Continue shopping</a></div>
                             </div>
                         </div>
