@@ -8,22 +8,7 @@ class CartService
     public function getProducts()
     {
         $sessionItems = session()->get('cart');
-        //$sessionItems->isEmpty() ? \Cart::getContent() : \Cart::add($sessionItems);
-        if (!$sessionItems->isEmpty()) {
-            foreach ($sessionItems as $item) {
-            \Cart::add([
-                'id' => $item->id,
-                'product_id' => $item->id,
-                'name' => $item->name,
-                'price' =>$item->price,
-                'quantity' => $item->quantity,
-                'attributes' => array(
-                'image' => $item->attributes['image'])
-                ]);
-            }
-        }
-        $products = \Cart::getContent();
-        return $products;
+        return $sessionItems;
     }
 
     public function addToCart($request)
@@ -36,7 +21,7 @@ class CartService
             'quantity' => $request->product['quantity'],
             'attributes' => array(
                 'image' => $request->product['image'],
-            )
+                )
         ]);
         session()->put(['cart' => \Cart::getContent()]);
         return session()->flash('success', 'Product is Added to Cart Successfully !');
@@ -44,6 +29,23 @@ class CartService
 
     public function updateCart($request)
     {
+        $products = session()->get('cart');
+        if (\Cart::getContent()->isEmpty() && $products) {
+            foreach ($products as $product) {
+                \Cart::add(
+                    [
+                        'id' => $product['id'],
+                        'product_id' => $product['id'],
+                        'name' => $product['name'],
+                        'price' => $product['price'],
+                        'quantity' => $product['quantity'],
+                        'attributes' => array(
+                            'image' => $product->attributes['image'],
+                            )
+                    ]
+                );
+            }
+        }
         \Cart::update(
             $request->id,
             [
